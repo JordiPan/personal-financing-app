@@ -1,10 +1,11 @@
 import { useEffect } from "react";
+import '../../css/notFound.css';
 function NotFound() {
     useEffect(() => {
         document.title = "Not found"
     })
-    return(<div>
-        <p>No page found...</p>
+    return(<div className="error-container">
+        <h1 className="error-text">No page found...</h1>
     </div>)
 }
 

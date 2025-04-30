@@ -23,6 +23,7 @@ img {
 .content-col {
   width: 50%;
 }
+
 @media (max-width: 768px) {
   h1 {
     margin: 0;
@@ -50,9 +51,11 @@ img {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: center;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 .banner-text {
   display: flex;
