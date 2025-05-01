@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import "../../css/home.css";
-import image from "../../assets/not-stolen-banner-trust.webp";
+import "../../../css/home.css";
+import image from "../../../assets/not-stolen-banner-trust.webp";
 function Home() {
+  
   useEffect(() => {
     document.title = "HOME PAGE";
   });
