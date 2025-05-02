@@ -7,10 +7,10 @@ import NotFound from './pages/NotFound'
 import Login from './pages/Guest/Login'
 import Register from './pages/Guest/Register'
 import About from './pages/Guest/About'
+import UserHome from './pages/User/UserHome'
 
 function App() {
-  // const [count, setCount] = useState(0);
-  // let num = 4;
+  //user home should probably not have a route called /user just make it the root url with auth
   return (
     <>
     <NavBar/>
@@ -20,6 +20,7 @@ function App() {
         <Route path="/about" element={<About/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/user" element={<UserHome/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </main>

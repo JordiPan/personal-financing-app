@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../../css/login.css";
 import { register } from "../../../api/apiBackendServices.ts";
+import { useNavigate } from "react-router-dom";
 //Make it prettier later
 function Register() {
   const [fName, setFname] = useState("");
@@ -9,7 +10,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [date, setDate] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     document.title = "Register";
   });
@@ -17,10 +18,15 @@ function Register() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const birthdate = new Date(date);
+    
     register({fName, lName, birthdate, email, password})
-    .then(res => console.log(res))
-    .catch(res => console.log(res))
-    console.log();
+    .then(res => {
+      console.log(res);
+      navigate('/user',{state: {
+        message: 'whatup'
+      }})
+    })
+    .catch((error: Error) => console.log(error))
   }
   return (
     <div className="form-container">

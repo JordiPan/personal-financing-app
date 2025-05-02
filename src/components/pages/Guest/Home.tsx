@@ -4,7 +4,7 @@ import image from "../../../assets/not-stolen-banner-trust.webp";
 function Home() {
   
   useEffect(() => {
-    document.title = "HOME PAGE";
+    document.title = "Home page";
   });
   return (
     <>
