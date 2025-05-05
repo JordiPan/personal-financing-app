@@ -1,17 +1,27 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../../css/login.css";
+import { login } from "../../../api/apiBackendServices";
+import { AxiosError } from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     document.title = "Login";
   });
-
+  //maybe sanitization later
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(email, password)
+    login({email, password})
+    .then((res) => {
+      navigate('/user', {state: res.data})
+      console.log(res)
+    })
+    .catch((res: AxiosError) => {
+      console.log(res)
+    })
   }
   return (
     <div className="form-container">

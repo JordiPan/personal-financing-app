@@ -1,6 +1,7 @@
 import { axiosDefault } from "./axios";
 import { axiosPrivate } from "./axios";
 import { RegisterResponse } from "./response-interfaces/RegisterResponse";
+import { LoginResponse } from "./response-interfaces/LoginResponse";
 export const register = (data: {
   fName: string,
   lName: string,
@@ -15,3 +16,16 @@ export const register = (data: {
     ...rest
   });
 };
+
+export const login = async (data: {
+  email: string,
+  password: string
+}) => {
+  return axiosPrivate.post<LoginResponse>("/auth/login", {
+    email: data.email,
+    password: data.password
+  }, {
+    withCredentials: true
+  });
+};
+

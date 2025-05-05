@@ -26,7 +26,7 @@ function Register() {
       navigate('/login')
     })
     .catch((error: AxiosError<{message: string}>) => 
-      console.log("error: ", error?.response?.data?.message)
+      console.log("error: ", error)
   )}
   return (
     <div className="form-container">
