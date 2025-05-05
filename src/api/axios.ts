@@ -1,16 +1,23 @@
 import axios from 'axios';
 
-export default axios.create({
-    baseURL: import.meta.env.VITE_API_BACKEND_URL
+const baseURL = import.meta.env.VITE_API_BACKEND_URL;
+const pkmnURL = import.meta.env.VITE_POKEMON_CARD_API_URL;
+const pkmnKey = import.meta.env.VITE_POKEMON_CARD_API_KEY;
+
+if (!baseURL || !pkmnURL || !pkmnKey) {
+  throw new Error('Missing required environment variables.');
+}
+export const axiosDefault = axios.create({
+    baseURL: import.meta.env.baseURL
 })
 export const axiosPrivate = axios.create({
-    baseURL: import.meta.env.VITE_API_BACKEND_URL,
+    baseURL: import.meta.env.baseURL,
     headers: {'Content-Type': 'application/json'}
 })
 export const axiosPKMN = axios.create({
-    baseURL: import.meta.env.VITE_POKEMON_CARD_API_URL,
+    baseURL: import.meta.env.pkmnURL,
     headers: {
         'Content-Type': 'application/json',
-        'X-Api-Key': import.meta.env.VITE_POKEMON_CARD_API_KEY
+        'X-Api-Key': import.meta.env.pkmnKey
     }
 })

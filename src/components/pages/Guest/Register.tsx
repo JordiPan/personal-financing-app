@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import "../../../css/login.css";
 import { register } from "../../../api/apiBackendServices.ts";
 import { useNavigate } from "react-router-dom";
+import { AxiosError } from "axios";
 //Make it prettier later
 function Register() {
   const [fName, setFname] = useState("");
   const [lName, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [date, setDate] = useState("");
+  const [birthdate, setDate] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     document.title = "Register";
@@ -17,20 +18,19 @@ function Register() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const birthdate = new Date(date);
     
     register({fName, lName, birthdate, email, password})
-    .then(res => {
-      console.log(res);
-      navigate('/user',{state: {
-        message: 'whatup'
-      }})
+    .then((res) => {
+      console.log("Response:", res.data.message);
+      // navigate('/user',{state: res.data})
+      navigate('/login')
     })
-    .catch((error: Error) => console.log(error))
-  }
+    .catch((error: AxiosError<{message: string}>) => 
+      console.log("error: ", error?.response?.data?.message)
+  )}
   return (
     <div className="form-container">
-      <h1>Login</h1>
+      <h1>Register</h1>
       <form className="user-form" onSubmit={handleSubmit}>
         <label htmlFor="fname-input" className="form-label">
           First name
@@ -95,7 +95,7 @@ function Register() {
           id="date-input"
           className="input"
           required
-          value={date}
+          value={birthdate}
           min="1940-12-31"
           max="2025-01-01"
           onChange={(e) => {

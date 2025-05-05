@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import "../../../css/home.css";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
+// import { RegisterResponse } from "../../../api/response-interfaces/RegisterResponse";
 function UserHome() {
-    const location = useLocation();
-  const message: string = location.state || {};
+    // const location = useLocation();
+  // const message: RegisterResponse = location.state || null;
   useEffect(() => {
-    document.title = "Home";
+    document.title = "User home";
   });
 
-  return <>{message}</>;
+  return <>res: {}</>;
 }
 
 export default UserHome;
