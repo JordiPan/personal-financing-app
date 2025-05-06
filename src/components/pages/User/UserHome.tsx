@@ -9,7 +9,7 @@ function UserHome() {
     document.title = "User home";
   });
 
-  return <>result: {message.token}</>;
+  return <>result: {message.access_token}</>;
 }
 
 export default UserHome;
