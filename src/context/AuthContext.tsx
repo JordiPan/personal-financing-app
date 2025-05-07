@@ -1,29 +1,39 @@
 import { createContext, useContext, useState } from 'react';
-import { User } from '../api/models/User';
+// import { User } from '../api/models/User';
+import { axiosPrivate } from '../api/axios';
 
 interface AuthContextType {
-    user: User | null;
-    token: string | null;
-    login: (user: User, token: string) => void; 
-    logout: () => void;   
+    token: string | null; //access token
+    role: string | null;
+    setLoginInfo: (role: string, token: string) => void; 
+    logout: () => void;
 }
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
-    const [user, setUser] = useState<User | null>(null);
+    const [role, setRole] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
 
-    const login = (user: User, token: string) => {
-        setUser(user);
+    const setLoginInfo = (role: string, token: string) => {
+        console.log("Logging info now!!!", role, token);
+        setRole(role);
         setToken(token);
     }
 
     const logout = () => {
-        setUser(null);
+        setRole(null);
         setToken(null);
+        // try {
+        //     await axios.post('loguit', {}, {
+        //         'withCredentials': true
+        //     })
+        // }
+        // catch (err) {
+        //     console.log(err);
+        // }
     }
     return (
-        <AuthContext.Provider value={{user, token, login, logout}}>
+        <AuthContext.Provider value={{role, token, setLoginInfo, logout}}>
         {children}
         </AuthContext.Provider>
     )
@@ -31,7 +41,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
 
 export const useAuth = () => {
     const context = useContext(AuthContext);
-    if(context) {
+    if(!context) {
         throw new Error("Bad")
     }
     return context;

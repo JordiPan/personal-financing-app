@@ -3,11 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../../css/login.css";
 import { login } from "../../../api/apiBackendServices";
 import { AxiosError } from "axios";
+import { useAuth } from "../../../context/AuthContext";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setLoginInfo } = useAuth();
   useEffect(() => {
     document.title = "Login";
   });
@@ -16,8 +18,8 @@ function Login() {
     e.preventDefault();
     login({email, password})
     .then((res) => {
-      navigate('/user', {state: res.data})
-      console.log(res)
+      setLoginInfo(res.data.role, res.data.access_token);
+      navigate('/user');
     })
     .catch((res: AxiosError) => {
       console.log(res)

@@ -1,15 +1,14 @@
 import { useEffect } from "react";
 import "../../../css/home.css";
-import { useLocation } from "react-router-dom";
-import { LoginResponse } from "../../../api/response-interfaces/LoginResponse";
+import { useAuth } from "../../../context/AuthContext";
 function UserHome() {
-    const location = useLocation();
-  const message: LoginResponse = location.state || null;
+  const {user, token} = useAuth();
+
   useEffect(() => {
     document.title = "User home";
   });
 
-  return <>result: {message.access_token}</>;
+  return <>result: {user?.id} {user?.role} | {token}</>;
 }
 
 export default UserHome;

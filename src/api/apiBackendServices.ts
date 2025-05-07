@@ -10,7 +10,7 @@ export const register = (data: {
   password: string
 }) => {
   const { fName, lName, ...rest } = data;
-  return axiosPrivate.post<RegisterResponse>("/auth/register", {
+  return axiosDefault.post<RegisterResponse>("/auth/register", {
     first_name: data.fName,
     last_name: data.lName,
     ...rest
@@ -21,7 +21,7 @@ export const login = async (data: {
   email: string,
   password: string
 }) => {
-  return axiosPrivate.post<LoginResponse>("/auth/login", {
+  return axiosDefault.post<LoginResponse>("/auth/login", {
     email: data.email,
     password: data.password
   }, {
