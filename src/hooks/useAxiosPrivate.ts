@@ -39,5 +39,6 @@ export const useAxiosPrivate = () => {
             axiosPrivate.interceptors.response.eject(responseIntercept);
         }
     }, [token, refresh])
+    return axiosPrivate;
 }
 

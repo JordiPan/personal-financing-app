@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import "../../../css/home.css";
 import { useAuth } from "../../../context/AuthContext";
 function UserHome() {
-  const {user, token} = useAuth();
+  const {role, token} = useAuth();
 
   useEffect(() => {
     document.title = "User home";
   });
 
-  return <>result: {user?.id} {user?.role} | {token}</>;
+  return <>result: {role} | {token}</>;
 }
 
 export default UserHome;

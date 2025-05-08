@@ -1,31 +1,27 @@
 import { axiosDefault } from "./axios";
-import { axiosPrivate } from "./axios";
-import { RegisterResponse } from "./response-interfaces/RegisterResponse";
-import { LoginResponse } from "./response-interfaces/LoginResponse";
-export const register = (data: {
-  fName: string,
-  lName: string,
-  birthdate: string,
-  email: string,
-  password: string
-}) => {
+import { useAxiosPrivate } from "../hooks/useAxiosPrivate";
+import { RegisterResponse } from "./interfaces/login-register/RegisterResponse";
+import { LoginResponse } from "./interfaces/login-register/LoginResponse";
+import { RegisterRequest } from "./interfaces/login-register/RegisterRequest";
+import { LoginRequest } from "./interfaces/login-register/LoginRequest";
+
+export const register = (data: RegisterRequest) => {
   const { fName, lName, ...rest } = data;
   return axiosDefault.post<RegisterResponse>("/auth/register", {
-    first_name: data.fName,
-    last_name: data.lName,
+    first_name: fName,
+    last_name: lName,
     ...rest
   });
 };
 
-export const login = async (data: {
-  email: string,
-  password: string
-}) => {
-  return axiosDefault.post<LoginResponse>("/auth/login", {
-    email: data.email,
-    password: data.password
-  }, {
+export const login = async (data: LoginRequest) => {
+  return axiosDefault.post<LoginResponse>("/auth/login", data, {
     withCredentials: true
   });
 };
 
+export const logout = async () => {
+  return axiosDefault.post("/auth/logout", {}, {
+    withCredentials: true
+  });
+};

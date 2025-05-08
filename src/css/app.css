@@ -11,7 +11,11 @@ footer {
 .loading-icon {
   width: 5rem;
   display: block;
+  margin-right: 50%;
+  margin-left: auto;
+  outline: none;
 }
+
 #footer-text {
   padding: 0;
   margin: 0;
@@ -28,8 +32,8 @@ nav h2 {
   margin: 0;
 }
 nav a {
-  display: flex;           
-  align-items: center;   
+  display: flex;
+  align-items: center;
   padding: 0.5rem;
   list-style-type: none;
   text-decoration: none;
