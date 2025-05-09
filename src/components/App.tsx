@@ -14,9 +14,10 @@ import UserCategories from "./pages/User/UserCategories";
 import UserItems from "./pages/User/UserItems";
 import PersistLogin from "./PersistLogin";
 import { GuestRoute } from "./GuestRoute";
+import UserProfile from "./pages/User/UserProfile";
 
 function App() {
-  //user home should probably not have a route called /user just make it the root url with auth
+  //user routes should probably not have a route called /user just make it the root url with auth later
   return (
     <>
       <AuthProvider>
@@ -37,6 +38,7 @@ function App() {
                   <Route index element={<UserHome />} />
                   <Route path="categories" element={<UserCategories />} />
                   <Route path="items" element={<UserItems />} />
+                  <Route path="profile" element={<UserProfile />} />
                 </Route>
               </Route>
               <Route path="*" element={<NotFound />} />
