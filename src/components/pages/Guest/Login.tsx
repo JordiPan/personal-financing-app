@@ -9,7 +9,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { setLoginInfo } = useAuth();
+  const { setToken } = useAuth();
   useEffect(() => {
     document.title = "Login";
   });
@@ -18,8 +18,9 @@ function Login() {
     e.preventDefault();
     login({email, password})
     .then((res) => {
-      setLoginInfo(res.data.role, res.data.access_token);
-      navigate('/user');
+      console.log("login:",res)
+      setToken(res.data.access_token);
+      navigate('/user', {replace: true});
     })
     .catch((res: AxiosError) => {
       console.log(res)
@@ -43,7 +44,7 @@ function Login() {
           }}
         />
 
-        <label htmlFor="email-input" className="form-label">
+        <label htmlFor="password-input" className="form-label">
           Password
         </label>
         <input

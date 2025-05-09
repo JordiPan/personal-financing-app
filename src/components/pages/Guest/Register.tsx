@@ -64,7 +64,7 @@ function Register() {
           Email
         </label>
         <input
-          type="text"
+          type="email"
           id="email-input"
           className="input"
           required

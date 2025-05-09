@@ -13,6 +13,7 @@ import RequireAuth from "./RequireAuth";
 import UserCategories from "./pages/User/UserCategories";
 import UserItems from "./pages/User/UserItems";
 import PersistLogin from "./PersistLogin";
+import { GuestRoute } from "./GuestRoute";
 
 function App() {
   //user home should probably not have a route called /user just make it the root url with auth
@@ -22,10 +23,12 @@ function App() {
         <NavBar />
         <main id="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route element={<GuestRoute />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+            </Route>
 
             <Route element={<PersistLogin />}>
               {/* RequireAuth as a parent route for all user pages */}
@@ -36,8 +39,8 @@ function App() {
                   <Route path="items" element={<UserItems />} />
                 </Route>
               </Route>
+              <Route path="*" element={<NotFound />} />
             </Route>
-            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

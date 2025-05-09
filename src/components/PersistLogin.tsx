@@ -6,8 +6,7 @@ import Loading from "./Loading";
 
 //gets called when on page with authorization needed
 const PersistLogin = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const { token } = useAuth();
+  const { token, isLoading, setIsLoading } = useAuth();
   const refresh = useRefresh();
 
   useEffect(() => {
