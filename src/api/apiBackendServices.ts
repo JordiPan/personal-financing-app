@@ -31,3 +31,6 @@ export const logout = async () => {
 export const getUserInfo = async (id: number, axios:AxiosInstance) => {
   return axios.get<User>(`/users/${id}`)
 }
+export const deleteUser = async (id: number, axios:AxiosInstance) => {
+  return axios.delete<User>(`/users/${id}`)
+}

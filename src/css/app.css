@@ -60,3 +60,21 @@ nav a {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
+  /* border: 1px solid black; */
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 0 auto;
+  width: 30rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 1);
+}
+
+.action-button {
+  margin: 0.5rem;
+  cursor: pointer;
+}

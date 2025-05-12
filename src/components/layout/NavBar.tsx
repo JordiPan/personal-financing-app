@@ -22,7 +22,6 @@ function NavigationBar() {
         console.error(res);
       });
   };
-  console.log(isLoading);
   if (isLoading) {
     return (
       <>

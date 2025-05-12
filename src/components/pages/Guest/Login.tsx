@@ -20,7 +20,6 @@ function Login() {
     e.preventDefault();
     login({email, password})
     .then((res) => {
-      console.log("login:",res)
       setToken(res.data.access_token);
       const from = location.state?.from?.pathname || "/dashboard"; // uh im not sure if i want the admin to have dashboard to so... this may not work later down the line
       navigate(from, {replace: true});
@@ -30,7 +29,7 @@ function Login() {
     })
   }
   return (
-    <div className="form-container">
+    <div className="container">
       <h1>Login</h1>
       <form className="user-form" onSubmit={handleSubmit}>
         <label htmlFor="email-input" className="form-label">
