@@ -51,16 +51,16 @@ function NavigationBar() {
 
       {role == "user" && (
         <>
-          <Link to="/user" className="logo">
+          <Link to="/dashboard" className="logo">
             <img src={logo} alt="icon image" className="home-icon" />
           </Link>
-          <Link to="/user/categories" className="nav-link">
+          <Link to="/categories" className="nav-link">
             Categories
           </Link>
-          <Link to="/user/items" className="nav-link">
+          <Link to="/items" className="nav-link">
             Items
           </Link>
-          <Link to="/user/profile" className="nav-link">
+          <Link to="/profile" className="nav-link">
             Profile
           </Link>
         </>

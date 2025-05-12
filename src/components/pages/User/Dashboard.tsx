@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "../../../css/home.css";
 import { useAuth } from "../../../context/AuthContext";
-function UserHome() {
+function Dashboard() {
   const {token} = useAuth();
 
   useEffect(() => {
@@ -11,4 +11,4 @@ function UserHome() {
   return <>result: {token}</>;
 }
 
-export default UserHome;
+export default Dashboard;
