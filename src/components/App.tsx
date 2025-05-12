@@ -25,14 +25,13 @@ function App() {
         <NavBar />
         <main id="main-content">
           <Routes>
-            <Route element={<GuestRoute />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-            </Route>
-
             <Route element={<PersistLogin />}>
+              <Route element={<GuestRoute />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+              </Route>
               <Route element={<RequireAuth allowedRoles={["user"]} />}>
                 <Route path="/dashboard" index element={<Dashboard />} />
                 <Route path="/categories" element={<UserCategories />} />

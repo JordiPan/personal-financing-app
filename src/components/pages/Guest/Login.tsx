@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../../../css/login.css";
 import { login } from "../../../api/apiBackendServices";
 import { AxiosError } from "axios";
@@ -10,6 +10,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { setToken } = useAuth();
+  const location = useLocation();
+
   useEffect(() => {
     document.title = "Login";
   });
@@ -20,7 +22,8 @@ function Login() {
     .then((res) => {
       console.log("login:",res)
       setToken(res.data.access_token);
-      navigate('/dashboard', {replace: true});
+      const from = location.state?.from?.pathname || "/dashboard"; // uh im not sure if i want the admin to have dashboard to so... this may not work later down the line
+      navigate(from, {replace: true});
     })
     .catch((res: AxiosError) => {
       console.log(res)
