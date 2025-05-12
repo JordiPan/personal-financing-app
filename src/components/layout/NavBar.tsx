@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { CustomJwtPayload } from "../../api/interfaces/auth/CustomJwtPayload";
 
 function NavigationBar() {
-  const { token, setToken, isLoading, setIsLoading } = useAuth();
+  const { token, setToken, isLoading } = useAuth();
   let role = "";
   if (token) {
     try {

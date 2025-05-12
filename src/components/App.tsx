@@ -13,7 +13,6 @@ import RequireAuth from "./RequireAuth";
 import UserCategories from "./pages/User/UserCategories";
 import UserItems from "./pages/User/UserItems";
 import PersistLogin from "./PersistLogin";
-import { GuestRoute } from "./GuestRoute";
 import UserProfile from "./pages/User/UserProfile";
 
 function App() {
@@ -26,12 +25,10 @@ function App() {
         <main id="main-content">
           <Routes>
             <Route element={<PersistLogin />}>
-              <Route element={<GuestRoute />}>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-              </Route>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
               <Route element={<RequireAuth allowedRoles={["user"]} />}>
                 <Route path="/dashboard" index element={<Dashboard />} />
                 <Route path="/categories" element={<UserCategories />} />

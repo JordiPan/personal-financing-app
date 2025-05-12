@@ -2,7 +2,7 @@ import { axiosDefault } from "../api/axios"
 import { LoginResponse } from "../api/interfaces/login-register/LoginResponse";
 import { useAuth } from "../context/AuthContext"
 const useRefresh = () => {
-    const {setToken} = useAuth();
+    const {setToken, setIsLoading} = useAuth();
 
     const refresh = async () => {
         //later in apibackendetc
@@ -10,13 +10,17 @@ const useRefresh = () => {
             withCredentials: true
         })
         .then((res) => {
-            console.log("got refresh token!")
-            const token = res.data.access_token;
+            // console.log("access token: ", res?.data?.access_token)
+            const token = res?.data?.access_token;
             setToken(token);
+            setIsLoading(false);
             return token;
         })
         .catch((res) => {
             console.log("refresh error: ",res);
+        })
+        .finally(()=> {
+            setIsLoading(false);
         })
     }
   return refresh;
