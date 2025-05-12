@@ -4,6 +4,8 @@ import { RegisterResponse } from "./interfaces/login-register/RegisterResponse";
 import { LoginResponse } from "./interfaces/login-register/LoginResponse";
 import { RegisterRequest } from "./interfaces/login-register/RegisterRequest";
 import { LoginRequest } from "./interfaces/login-register/LoginRequest";
+import { User } from "./interfaces/user/User";
+import { AxiosInstance } from "axios";
 
 export const register = (data: RegisterRequest) => {
   const { fName, lName, ...rest } = data;
@@ -25,3 +27,7 @@ export const logout = async () => {
     withCredentials: true
   });
 };
+//axios instance will always be of axiosprivate with the interceptors
+export const getUserInfo = async (id: number, axios:AxiosInstance) => {
+  return axios.get<User>(`/users/${id}`)
+}

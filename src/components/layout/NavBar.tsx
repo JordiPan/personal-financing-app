@@ -2,20 +2,14 @@ import { NavLink, Link } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { useAuth } from "../../context/AuthContext";
 import { logout } from "../../api/apiBackendServices";
-import { jwtDecode } from "jwt-decode";
-import { CustomJwtPayload } from "../../api/interfaces/auth/CustomJwtPayload";
+import { customjwtDecoder } from "../../api/CustomJwtDecoder";
 
 function NavigationBar() {
-  const { token, setToken, isLoading, setIsLoading } = useAuth();
-  let role = "";
+  const { token, setToken, isLoading } = useAuth();
+  let role = '';
   if (token) {
-    try {
-      let decoded = jwtDecode(token) as CustomJwtPayload;
-      role = decoded.role;
-    } catch (error) {
-      console.log(error);
-      role = "";
-    }
+    const decoded = customjwtDecoder(token);
+    role = decoded.role;
   }
 
   const handleLogout = async () => {
@@ -28,7 +22,7 @@ function NavigationBar() {
         console.error(res);
       });
   };
-  console.log(isLoading)
+  console.log(isLoading);
   if (isLoading) {
     return (
       <>
