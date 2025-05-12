@@ -6,7 +6,7 @@ import { customjwtDecoder } from "../../api/CustomJwtDecoder";
 
 function NavigationBar() {
   const { token, setToken, isLoading } = useAuth();
-  let role = '';
+  let role = "";
   if (token) {
     const decoded = customjwtDecoder(token);
     role = decoded.role;
