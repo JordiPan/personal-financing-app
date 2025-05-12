@@ -20,7 +20,7 @@ function Login() {
     .then((res) => {
       console.log("login:",res)
       setToken(res.data.access_token);
-      navigate('/user', {replace: true});
+      navigate('/dashboard', {replace: true});
     })
     .catch((res: AxiosError) => {
       console.log(res)

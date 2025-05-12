@@ -4,7 +4,6 @@ import { useAuth } from "../../context/AuthContext";
 import { logout } from "../../api/apiBackendServices";
 import { jwtDecode } from "jwt-decode";
 import { CustomJwtPayload } from "../../api/interfaces/auth/CustomJwtPayload";
-import { useEffect, useState } from "react";
 
 function NavigationBar() {
   const { token, setToken, isLoading, setIsLoading } = useAuth();
@@ -29,24 +28,32 @@ function NavigationBar() {
         console.error(res);
       });
   };
-
-  if(isLoading) {
-    return (<><nav></nav></>)
+  console.log(isLoading)
+  if (isLoading) {
+    return (
+      <>
+        <nav></nav>
+      </>
+    );
   }
   return (
     <nav>
-      <Link to="/" className="logo">
-        <img src={logo} alt="icon image" className="home-icon" />
-      </Link>
-
       {!role && (
-        <Link to="/about" className="nav-link">
-          About
-        </Link>
+        <>
+          <Link to="/" className="logo">
+            <img src={logo} alt="icon image" className="home-icon" />
+          </Link>
+          <Link to="/about" className="nav-link">
+            About
+          </Link>
+        </>
       )}
 
       {role == "user" && (
         <>
+          <Link to="/dashboard" className="logo">
+            <img src={logo} alt="icon image" className="home-icon" />
+          </Link>
           <Link to="/categories" className="nav-link">
             Categories
           </Link>
