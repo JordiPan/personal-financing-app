@@ -14,6 +14,7 @@ import UserCategories from "./pages/User/UserCategories";
 import UserItems from "./pages/User/UserItems";
 import PersistLogin from "./PersistLogin";
 import UserProfile from "./pages/User/UserProfile";
+import { UserRedirect } from "./UserRedirect";
 
 function App() {
   //user routes should probably not have a route called /user just make it the root url with auth later
@@ -25,10 +26,12 @@ function App() {
         <main id="main-content">
           <Routes>
             <Route element={<PersistLogin />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
+              <Route element={<UserRedirect />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+              </Route>
               <Route element={<RequireAuth allowedRoles={["user"]} />}>
                 <Route path="/dashboard" index element={<Dashboard />} />
                 <Route path="/categories" element={<UserCategories />} />
