@@ -5,6 +5,7 @@ import { RegisterRequest } from "./interfaces/login-register/RegisterRequest";
 import { LoginRequest } from "./interfaces/login-register/LoginRequest";
 import { User } from "./interfaces/user/User";
 import { AxiosInstance } from "axios";
+import { UserUpdateResponse } from "./interfaces/user/UserUpdateResponse";
 
 //add try catch inside these functions instead of in the implementation!!!
 export const register = (data: RegisterRequest) => {
@@ -34,3 +35,7 @@ export const getUserInfo = async (id: number, axios:AxiosInstance) => {
 export const deleteUser = async (id: number, axios:AxiosInstance) => {
   return axios.delete<User>(`/users/${id}`)
 }
+
+export const updateUser = (id: number, user: User, axios:AxiosInstance) => {
+  return axios.put<UserUpdateResponse>(`/users/${id}`, user);
+};

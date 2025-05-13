@@ -5,13 +5,18 @@ import { customjwtDecoder } from "../../../api/CustomJwtDecoder";
 import { useAxiosPrivate } from "../../../hooks/useAxiosPrivate";
 import Loading from "../../Loading";
 import { useNavigate } from "react-router-dom";
+import { UserForm } from "./form-components/UserForm";
+import { User } from "../../../api/interfaces/user/User";
 function UserProfile() {
   const { token } = useAuth();
-  const [fName, setFName] = useState('');
-  const [lName, setLName] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthdate, setBirthdate] = useState('');
+  const [user, setUser] = useState<User>({
+    first_name: '',
+    last_name: '',
+    email: '',
+    birthdate: ''
+  });
   const [isLoading, setIsLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
 
@@ -25,13 +30,12 @@ function UserProfile() {
         await getUserInfo(decoded.sub, axiosPrivate)
           .then((res) => {
             console.log(res.data);
-            setFName(res.data.first_name);
-            setLName(res.data.last_name);
-            setEmail(res.data.email);
-
-            const date = new Date(res.data.birthdate);
-            const fDate = date.toLocaleDateString('en-CA');
-            setBirthdate(fDate);
+            let user = res.data;
+            user.birthdate = new Date(res.data.birthdate).toLocaleDateString('en-CA');
+            setUser(res.data);
+            // const date = new Date(res.data.birthdate);
+            // const fDate = date.toLocaleDateString('en-CA');
+            // setBirthdate(fDate);
           })
           .catch((res) => {
             console.log(res);
@@ -43,6 +47,7 @@ function UserProfile() {
     };
     fetchInfo();
   }, []);
+
 
   //should test if it cascades correctly someday
   const handleDelete = async () => {
@@ -63,11 +68,20 @@ function UserProfile() {
   return (
   <Loading isLoading={isLoading}>
     <div className="profile-container">
-        <p>{fName} {lName}</p>
-        <p>Email: {email}</p>
-        <p>Birthdate: {birthdate}</p>
-        <button type="button" className="update-button action-button">Update info</button>
+      {
+        !showForm ? 
+        (<>
+        <p>{user.first_name} {user.last_name}</p>
+        <p>Email: {user.email}</p>
+        <p>Birthdate: {user.birthdate}</p>
+        <button type="button" className="update-button action-button" onClick={() => {setShowForm(true)}}>Update info</button>
         <button type="button" className="update-button action-button" onClick={handleDelete}>Delete account</button>
+        </>) : 
+
+        (<>
+        <UserForm user={user} setUser={setUser} onClose={() => {setShowForm(false)}}/>
+        </>)
+      }
     </div>
   </Loading>);
 }

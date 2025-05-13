@@ -50,6 +50,7 @@ nav a {
 .nav-link {
   transition: background-color 0.5s ease;
   background-color: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
 }
 .nav-link:last-child {
   margin-left: auto;

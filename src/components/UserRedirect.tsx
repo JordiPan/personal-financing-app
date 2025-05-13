@@ -1,13 +1,12 @@
-import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Outlet, Navigate } from "react-router-dom";
 // import { customjwtDecoder } from "../api/CustomJwtDecoder";
 
 //redirects when user logged in and wants to visit guest pages
 export const UserRedirect = () => {
-  const { token, isLoading } = useAuth();
-  console.log(isLoading, token)
-  if (!isLoading && token) {
+  const { token } = useAuth();
+  
+  if (token) {
     // let decoded =  customjwtDecoder(token);
 
     // if(decoded?.role === 'admin') {

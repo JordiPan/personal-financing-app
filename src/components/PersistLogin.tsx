@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import useRefresh from "../hooks/useRefresh";
 import Loading from "./Loading";
 
-//gets called when on page with authorization needed
+//gets called when on page to check accesstoken needed
 const PersistLogin = () => {
   const { token, isLoading } = useAuth();
   const refresh = useRefresh();

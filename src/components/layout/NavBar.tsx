@@ -3,9 +3,10 @@ import logo from "../../assets/logo.svg";
 import { useAuth } from "../../context/AuthContext";
 import { logout } from "../../api/apiBackendServices";
 import { customjwtDecoder } from "../../api/CustomJwtDecoder";
-
+import { useNavigate } from "react-router-dom";
 function NavigationBar() {
   const { token, setToken, isLoading } = useAuth();
+  const navigate = useNavigate();
   let role = "";
   if (token) {
     const decoded = customjwtDecoder(token);
@@ -17,6 +18,7 @@ function NavigationBar() {
       .then((res) => {
         console.log(res.data?.message);
         setToken(null);
+        navigate('/', {replace: true})
       })
       .catch((res) => {
         console.error(res);
@@ -64,9 +66,9 @@ function NavigationBar() {
           Login
         </NavLink>
       ) : (
-        <NavLink to="/login" className="nav-link" onClick={handleLogout}>
+        <a className="nav-link" onClick={handleLogout}>
           Logout
-        </NavLink>
+        </a>
       )}
     </nav>
   );
