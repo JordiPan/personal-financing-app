@@ -1,13 +1,17 @@
 :root {
   font-family: "Asap Condensed", "Montserrat", "Roboto", sans-serif;
-  background-color: rgb(205, 228, 255);
-  color: black;
+  background-color: rgb(20, 20, 31);
+  color: white;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
+  --main-background-color-dark: rgb(20, 20, 31);
+  --sub-background-color-dark: rgb(44, 44, 63);
+  --main-border-color-dark: 1px solid rgb(58, 58, 90);
+  --hover-color-dark: rgb(58, 58, 90);
 }
 input, select, textarea, button {
   font-family: inherit;
@@ -30,6 +34,9 @@ h1 {
   display: flex;
   height: 100vh;
   flex-direction: column;
+}
+.container-color-dark {
+  background-color: var(--sub-background-color-dark);
 }
 /* html {
   height: 100vh;

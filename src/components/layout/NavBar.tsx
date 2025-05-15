@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function NavigationBar() {
   const { token, setToken, isLoading } = useAuth();
   const navigate = useNavigate();
+  const active = ({ isActive } : {isActive : boolean}) => { return isActive ? {backgroundColor: 'rgb(44, 44, 63)'} : {} }
   let role = "";
   if (token) {
     const decoded = customjwtDecoder(token);
@@ -38,31 +39,31 @@ function NavigationBar() {
           <Link to="/" className="logo">
             <img src={logo} alt="icon image" className="home-icon" />
           </Link>
-          <Link to="/about" className="nav-link">
+          <NavLink style={active} to="/about" className="nav-link">
             About
-          </Link>
+          </NavLink>
         </>
       )}
 
       {role == "user" && (
         <>
-          <Link to="/dashboard" className="logo">
+          <NavLink to="/dashboard" className="logo">
             <img src={logo} alt="icon image" className="home-icon" />
-          </Link>
-          <Link to="/categories" className="nav-link">
+          </NavLink>
+          <NavLink style={active} to="/categories" className="nav-link">
             Categories
-          </Link>
-          <Link to="/items" className="nav-link">
+          </NavLink>
+          <NavLink style={active} to="/items" className="nav-link">
             Items
-          </Link>
-          <Link to="/profile" className="nav-link">
+          </NavLink>
+          <NavLink style={active} to="/profile" className="nav-link">
             Profile
-          </Link>
+          </NavLink>
         </>
       )}
 
       {!role ? (
-        <NavLink to="/login" className="nav-link">
+        <NavLink style={active} to="/login" className="nav-link">
           Login
         </NavLink>
       ) : (

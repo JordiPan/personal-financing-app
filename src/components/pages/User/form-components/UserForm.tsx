@@ -4,7 +4,6 @@ import { updateUser } from "../../../../api/apiBackendServices";
 import { useAuth } from "../../../../context/AuthContext";
 import { customjwtDecoder } from "../../../../api/CustomJwtDecoder";
 import { useAxiosPrivate } from "../../../../hooks/useAxiosPrivate";
-import { toFormData } from "axios";
 
 interface Props {
   user: User;
@@ -47,7 +46,7 @@ export const UserForm = ({ user, setUser, onClose }: Props) => {
   return (
     <div className="update-form">
       <form className="user-form" onSubmit={handleSubmit}>
-        <h1>Update</h1>
+        <h1>Update info</h1>
         <label htmlFor="fName-input" className="form-label">
           First Name
         </label>

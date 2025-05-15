@@ -1,0 +1,35 @@
+.user-container {
+  margin: 3rem;
+}
+
+.category-container {
+  background-color: rgb(44, 44, 63);
+}
+
+.create-category-button {
+  all: unset;
+  cursor: pointer;
+  background-color: rgb(44, 44, 63);
+  padding: 1rem;
+  border-radius: 5%;
+  font-size: 200%;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
+  /* border: 1px solid black; */
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 0 auto;
+  width: 30rem;
+  background-color: rgb(44, 44, 63);
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 1); */
+}
+
+.action-button {
+  margin-top: 1rem;
+  cursor: pointer;
+}

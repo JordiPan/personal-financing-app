@@ -29,7 +29,7 @@ function Login() {
     })
   }
   return (
-    <div className="container">
+    <div className="container container-color-dark">
       <h1>Login</h1>
       <form className="user-form" onSubmit={handleSubmit}>
         <label htmlFor="email-input" className="form-label">
@@ -61,7 +61,7 @@ function Login() {
         />
 
         <input type="submit" className="submit-button" value="Login" />
-        <Link to="/register">No account? Register here</Link>
+        <Link to="/register" className="register-link">No account? Register here</Link>
       </form>
     </div>
   );

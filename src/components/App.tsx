@@ -17,8 +17,8 @@ import UserProfile from "./pages/User/UserProfile";
 import { UserRedirect } from "./UserRedirect";
 
 function App() {
-  //user routes should probably not have a route called /user just make it the root url with auth later
   //maybe guest, user, admin should have a separate navbar in their respective routes
+  //maybe make a layout element to add a container class for default main content styling
   return (
     <>
       <AuthProvider>
