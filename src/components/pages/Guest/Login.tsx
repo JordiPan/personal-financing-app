@@ -60,7 +60,7 @@ function Login() {
           }}
         />
 
-        <input type="submit" className="submit-button" value="Login" />
+        <input type="submit" className="submit-button form-button" value="Login" />
         <Link to="/register" className="register-link">No account? Register here</Link>
       </form>
     </div>

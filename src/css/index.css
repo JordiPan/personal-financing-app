@@ -12,10 +12,12 @@
   --sub-background-color-dark: rgb(44, 44, 63);
   --main-border-color-dark: 1px solid rgb(58, 58, 90);
   --hover-color-dark: rgb(58, 58, 90);
+  --border-radius: 0.5rem;
 }
 input, select, textarea, button {
   font-family: inherit;
   font-size: inherit;
+  color: inherit;
 }
 body {
   margin: 0;
@@ -37,6 +39,7 @@ h1 {
 }
 .container-color-dark {
   background-color: var(--sub-background-color-dark);
+  border-radius: var(--border-radius);
 }
 /* html {
   height: 100vh;

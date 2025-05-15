@@ -7,11 +7,6 @@
 }
 
 .create-category-button {
-  all: unset;
-  cursor: pointer;
-  background-color: rgb(44, 44, 63);
-  padding: 1rem;
-  border-radius: 5%;
   font-size: 200%;
 }
 
@@ -21,7 +16,7 @@
   justify-content: left;
   text-align: left;
   /* border: 1px solid black; */
-  border-radius: 1rem;
+  border-radius: var(--border-radius);
   padding: 2rem;
   margin: 0 auto;
   width: 30rem;
@@ -29,7 +24,6 @@
   /* box-shadow: 0 1px 3px rgba(0, 0, 0, 1); */
 }
 
-.action-button {
+.back-button {
   margin-top: 1rem;
-  cursor: pointer;
 }

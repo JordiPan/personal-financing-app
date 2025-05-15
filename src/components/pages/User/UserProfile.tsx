@@ -67,15 +67,15 @@ function UserProfile() {
   }
   return (
   <Loading isLoading={isLoading}>
-    <div className="profile-container">
+    <div className="profile-container container-color-dark">
       {
         !showForm ? 
         (<>
         <p>{user.first_name} {user.last_name}</p>
         <p>Email: {user.email}</p>
         <p>Birthdate: {user.birthdate}</p>
-        <button type="button" className="update-button action-button" onClick={() => {setShowForm(true)}}>Update info</button>
-        <button type="button" className="update-button action-button" onClick={handleDelete}>Delete account</button>
+        <button type="button" className="form-button" onClick={() => {setShowForm(true)}}>Update info</button>
+        <button type="button" className="form-button" onClick={handleDelete}>Delete account</button>
         </>) : 
 
         (<>

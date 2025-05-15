@@ -4,7 +4,6 @@
     justify-content: center;
     text-align: center;
     /* border: 1px solid black; */
-    border-radius: 1rem;
     padding: 2rem;
     margin: 0 auto;
     width: 30rem;
@@ -15,16 +14,6 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-}
-.submit-button {
-    color: white;
-    background-color: green;
-    border: none;
-    padding: 0.5rem;
-    border-radius: 6px;
-    user-select: none;
-    cursor: pointer;
-    margin-top: 1rem;
 }
 .user-form label {
     text-align: left;

@@ -97,11 +97,11 @@ export const UserForm = ({ user, setUser, onClose }: Props) => {
           onChange={handleChange}
         />
 
-        <input type="submit" className="submit-button" value="Update" />
+        <input type="submit" className="submit-button form-button" value="Update" />
+        <button className="back-button form-button" onClick={onClose}>
+          Back
+        </button>
       </form>
-      <button className="back-button" onClick={onClose}>
-        Back
-      </button>
     </div>
   );
   // back button should change usestate () from parent

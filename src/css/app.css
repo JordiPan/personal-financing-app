@@ -20,7 +20,6 @@ footer {
   padding: 0;
   margin: 0;
 }
-
 nav {
   border-bottom: var(--main-border-color);
   /* background-color: rgba(0, 0, 0, 0.1); */
@@ -63,14 +62,60 @@ nav a {
 }
 
 .input {
-    all: unset;
-    cursor: text;
-    border-radius: 4px;
-    padding: 0.2rem;
-    background-color: rgb(20, 20, 31);
-    color: white;
-    text-align: left;
+  all: unset;
+  cursor: text;
+  border-radius: var(--border-radius);
+  padding: 0.2rem;
+  background-color: rgb(20, 20, 31);
+  color: white;
+  text-align: left;
 }
+
 input:focus {
   outline: 2px solid dodgerblue;
+}
+
+.form-button {
+  border: none;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  box-shadow: none;
+  appearance: none;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.3rem;
+  background-color: var(--main-background-color-dark);
+  border: var(--main-border-color-dark);
+  border-radius: var(--border-radius);
+  transition: background-color 0.5s ease;
+}
+
+.form-button:hover {
+  background-color: var(--hover-color-dark);
+}
+
+.logout-button {
+  border: none;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  box-shadow: none;
+  appearance: none;
+  background-color: var(--main-background-color-dark);
+  padding: 0.5rem;
+}
+
+.submit-button {
+  color: white;
+  background-color: green;
+  border: none;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  user-select: none;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.submit-button:hover {
+  background-color: rgb(2, 172, 2);
 }

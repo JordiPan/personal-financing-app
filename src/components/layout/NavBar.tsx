@@ -67,9 +67,9 @@ function NavigationBar() {
           Login
         </NavLink>
       ) : (
-        <a className="nav-link" onClick={handleLogout}>
+        <button className="nav-link logout-button" onClick={handleLogout}>
           Logout
-        </a>
+        </button>
       )}
     </nav>
   );

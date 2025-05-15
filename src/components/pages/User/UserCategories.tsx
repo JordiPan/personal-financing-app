@@ -16,7 +16,7 @@ function UserCategories() {
           <button className="category container-color-dark">Category | description</button>
           <button className="category container-color-dark">Category | description</button>
         </div>
-        <button className="create-category-button container-color-dark">+</button>
+        <button className="create-category-button form-button container-color-dark">+</button>
       </div>
     </div>
   );

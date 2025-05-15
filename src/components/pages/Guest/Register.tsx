@@ -106,7 +106,7 @@ function Register() {
 
                 <input
                     type="submit"
-                    className="submit-button"
+                    className="submit-button form-button"
                     value="Register"
                 />
                 <Link to="/login">Go to login</Link>
