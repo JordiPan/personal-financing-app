@@ -26,7 +26,7 @@ export const useAxiosPrivate = () => {
       //does prev request again when getting new token
       async (error) => {
         const prev = error?.config;
-        if (error?.response?.status === 403 && !prev?.sent) {
+        if (error?.response?.status === 401 && !prev?.sent) {
           prev.sent = true;
           const newAccessToken = await refresh();
           prev.headers["Authorization"] = `Bearer ${newAccessToken}`;

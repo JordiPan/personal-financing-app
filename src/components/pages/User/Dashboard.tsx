@@ -5,10 +5,10 @@ function Dashboard() {
   const {token} = useAuth();
 
   useEffect(() => {
-    document.title = "User home";
+    document.title = "Dashboard";
   });
 
-  return <>result: {token}</>;
+  return <>Here is the dashboard with fun graphs!!!! WIP</>;
 }
 
 export default Dashboard;

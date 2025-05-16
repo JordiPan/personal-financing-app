@@ -8,8 +8,8 @@
 
 .create-category-button {
   font-size: 200%;
+  display: inline;
 }
-
 .profile-container {
   display: flex;
   flex-direction: column;
@@ -26,4 +26,43 @@
 
 .back-button {
   margin-top: 1rem;
+}
+.categories-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.category {
+  cursor: pointer;
+  /* max-width: 18rem; */
+  padding: 1rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(20% - 1rem);
+  min-height: 15rem;
+}
+
+.create-category-form {
+  display: flex;
+  flex-direction: column;
+  /* position: fixed !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  text-align: center;
+  z-index: 6969;
+  width: 25rem;
+  padding: 1rem;
+  /* background-color: #c3d7f7 !important; */
+  /* box-shadow: 1px 2px 10px rgba(255, 255, 255, 0.5),
+    0 0 0 999em rgba(0, 0, 0, 0.8); */
+  border-radius: 1rem;
+}
+
+.create-category-form > .input {
+  /* margin-left: 1rem; */
+  /* margin-right: 1rem; */
+  margin-bottom: 1rem;
 }
