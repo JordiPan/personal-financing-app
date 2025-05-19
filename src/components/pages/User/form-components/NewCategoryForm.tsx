@@ -16,7 +16,7 @@ export const NewCategoryForm = ({ setCategories, setShowForm, axiosPrivate }: Pr
     //id doesnt get used in api actually but interface is doing this, could fix later
     createCategory({id: 0, name, description}, axiosPrivate)
       .then((res) => {
-        setCategories((prev) => [res.data.category, ...prev])
+        setCategories((prev) => [...prev, res.data.category])
       })
       .catch((res) => {
         console.log(res)

@@ -49,13 +49,14 @@ function UserCategories() {
                 {categories?.map((category) => (
                   <CategoryComponent
                     key={category.id}
+                    categoryId={category.id}
                     name={category.name}
                     description={category.description}
                   />
                 ))}
               </>
             ) : (
-              <> No categories made...</>
+              <> No categories found...</>
             )}
           </Loading>
         </div>

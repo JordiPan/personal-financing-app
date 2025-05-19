@@ -5,7 +5,7 @@ import { customjwtDecoder } from "../../../api/CustomJwtDecoder";
 import { useAxiosPrivate } from "../../../hooks/useAxiosPrivate";
 import Loading from "../../Loading";
 import { useNavigate } from "react-router-dom";
-import { UserForm } from "./form-components/UserForm";
+import { UserForm } from "./form-components/UpdateUserForm";
 import { User } from "../../../api/interfaces/user/User";
 function UserProfile() {
   const { token } = useAuth();
