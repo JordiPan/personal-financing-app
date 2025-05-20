@@ -10,6 +10,7 @@ import { Category } from "./interfaces/category/Category";
 import { CategoryResponse } from "./interfaces/category/CategoryResponse";
 import { CategoryListResponse } from "./interfaces/category/CategoryListResponse";
 import { TransactionListResponse } from "./interfaces/transaction/TransactionListResponse";
+import { ItemsInCategoryResponse } from "./interfaces/item/ItemsInCategoryResponse";
 
 //add try catch inside these functions instead of in the implementation!!!
 export const register = (data: RegisterRequest) => {
@@ -45,12 +46,15 @@ export const updateUser = async (id: number, user: User, axios:AxiosInstance) =>
 export const getCategories = async (axios:AxiosInstance) => {
   return await axios.get<CategoryListResponse>(`/categories`);
 };
-export const getTransactions = async (id: string, axios:AxiosInstance) => {
-  return await axios.get<TransactionListResponse>(`/categories/${id}`);
+export const getItemsInCategory = async (id: string, axios:AxiosInstance) => {
+  return await axios.get<ItemsInCategoryResponse>(`/categories/${id}`);
 };
 export const createCategory = async (category:Category, axios:AxiosInstance) => {
   return await axios.post<CategoryResponse>(`/categories`, category);
 };
 export const updateCategory = async (categoryId: number, category:Category, axios:AxiosInstance) => {
   return await axios.post<CategoryResponse>(`/categories/${categoryId}`, category);
+};
+export const getRecentTransactions = async (axios:AxiosInstance) => {
+  return await axios.get<TransactionListResponse>(`/recent/transactions`);
 };

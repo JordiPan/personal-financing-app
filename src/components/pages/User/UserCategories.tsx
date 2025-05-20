@@ -3,7 +3,6 @@ import "../../../css/user-pages.css";
 import { NewCategoryForm } from "./form-components/NewCategoryForm";
 import { getCategories } from "../../../api/apiBackendServices";
 import { useAxiosPrivate } from "../../../hooks/useAxiosPrivate";
-import { CategoryListResponse } from "../../../api/interfaces/category/CategoryListResponse";
 import { Category } from "../../../api/interfaces/category/Category";
 import { CategoryComponent } from "./sub-components/CategoryComponent";
 import Loading from "../../Loading";
@@ -30,8 +29,8 @@ function UserCategories() {
   }, []);
 
   return (
-    <div className="user-container">
-      <h1>Categories</h1>
+    <>
+      <h1>Categories | Find all your purchased items by category!</h1>
       <button
         className="create-category-button form-button container-color-dark"
         onClick={() => {
@@ -46,7 +45,7 @@ function UserCategories() {
           <Loading isLoading={isLoading}>
             {categories.length !== 0 ? (
               <>
-                {categories?.map((category) => (
+                {categories.map((category) => (
                   <CategoryComponent
                     key={category.id}
                     categoryId={category.id}
@@ -70,7 +69,7 @@ function UserCategories() {
       ) : (
         <></>
       )}
-    </div>
+    </>
   );
 }
 export default UserCategories;

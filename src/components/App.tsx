@@ -16,6 +16,7 @@ import PersistLogin from "./PersistLogin";
 import UserProfile from "./pages/User/UserProfile";
 import { UserRedirect } from "./UserRedirect";
 import { CategoryTransactions } from "./pages/User/CategoryTransactions";
+import { UserLayout } from "./layout/UserLayout";
 
 function App() {
   //maybe make a layout element to add a container class for default main content styling
@@ -32,13 +33,18 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
               </Route>
-              
+
               <Route element={<RequireAuth allowedRoles={["user"]} />}>
-                <Route path="/dashboard" index element={<Dashboard />} />
-                <Route path="/categories" element={<UserCategories />} />
-                <Route path="/categories/:slug" element={<CategoryTransactions />}/>
-                <Route path="/items" element={<UserItems />} />
-                <Route path="/profile" element={<UserProfile />} />
+                <Route element={<UserLayout />}>
+                  <Route path="/dashboard" index element={<Dashboard />} />
+                  <Route path="/categories" element={<UserCategories />} />
+                  <Route
+                    path="/categories/:slug"
+                    element={<CategoryTransactions />}
+                  />
+                  <Route path="/items" element={<UserItems />} />
+                  <Route path="/profile" element={<UserProfile />} />
+                </Route>
               </Route>
 
               <Route element={<RequireAuth allowedRoles={["admin"]} />}>

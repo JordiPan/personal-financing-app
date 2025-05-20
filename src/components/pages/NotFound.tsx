@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import '../../css/notFound.css';
+import '../../css/not-found.css';
 function NotFound() {
     useEffect(() => {
         document.title = "Not found"
