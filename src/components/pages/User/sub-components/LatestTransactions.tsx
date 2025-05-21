@@ -2,52 +2,52 @@ import { useEffect, useState } from "react";
 import { getRecentTransactions } from "../../../../api/apiBackendServices";
 import { useAxiosPrivate } from "../../../../hooks/useAxiosPrivate";
 import { Transaction } from "../../../../api/interfaces/transaction/Transaction";
-import { AxiosInstance } from "axios";
 import { NewTransactionForm } from "../form-components/NewTransactionForm";
+// import { useAuth } from "../../../../context/AuthContext";
+import Loading from "../../../Loading";
 // import { useNavigate } from "react-router-dom";
 
-interface Props {
-  axiosPrivate: AxiosInstance;
-}
-//grabs latest 5 transactions registered
-export const LatestTransactions = ({ axiosPrivate }: Props) => {
-  // const navigate = useNavigate();
+//grabs recent 5 transactions
+export const LatestTransactions = () => {
+  const axiosPrivate = useAxiosPrivate();
   const [isLoading, setIsLoading] = useState(true);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     //not working atm
-    // getRecentTransactions(axiosPrivate)
-    // .then((res) => {
-    // })
-    // .then((res) => {
-    //   console.log(res);
-    // })
-    // .finally(() => {
-    //   setIsLoading(false);
-    // })
-  });
+    getRecentTransactions(axiosPrivate)
+      .then((res) => {
+        console.log(res.data.message);
+        setTransactions(res.data.transactions);
+      })
+      .catch((res) => {
+        console.log(res);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
   //not complex enough to warrant a separate component
   return (
     <div className="transactions-container">
       <div className="transactions-title">Latest transactions (5)</div>
       <div className="latest-transactions">
-        <button className="transaction form-button">
-          Transaction test 1| 123,12
-        </button>
-        <button className="transaction form-button">
-          Transaction test 2| 123,12
-        </button>
-        <button className="transaction form-button">
-          Transaction test 3| 123,12
-        </button>
-        <button className="transaction form-button">
-          Transaction test 4| 123,12
-        </button>
-        <button className="transaction form-button">
-          Transaction test 5| 123,12
-        </button>
+        <Loading isLoading={isLoading}>
+          {transactions.length !== 0 ? (
+            <>
+              {transactions.map((transaction) => {
+                return (
+                  <button className="transaction form-button" key={transaction.id}>
+                    {transaction.name} | {transaction.total}
+                  </button>
+                );
+              })}
+            </>
+          ) : (
+            <>No transactions made...</>
+          )}
+        </Loading>
       </div>
       <button
         className="make-transaction form-button"

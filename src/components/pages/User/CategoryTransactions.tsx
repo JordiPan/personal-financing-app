@@ -5,7 +5,7 @@ import { getItemsInCategory } from "../../../api/apiBackendServices";
 import { useAxiosPrivate } from "../../../hooks/useAxiosPrivate";
 import Loading from "../../Loading";
 import { Item } from "../../../api/interfaces/item/Item";
-
+//should be called categoryitems
 export const CategoryTransactions = () => {
   const { slug } = useParams();
   const id = slug?.split("-").pop() || "";
@@ -27,7 +27,7 @@ export const CategoryTransactions = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  });
+  },[]);
   return (
     <Loading isLoading={isLoading}>
       {items.length !== 0 ? (

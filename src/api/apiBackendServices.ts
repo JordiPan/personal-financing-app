@@ -56,5 +56,5 @@ export const updateCategory = async (categoryId: number, category:Category, axio
   return await axios.post<CategoryResponse>(`/categories/${categoryId}`, category);
 };
 export const getRecentTransactions = async (axios:AxiosInstance) => {
-  return await axios.get<TransactionListResponse>(`/recent/transactions`);
+  return await axios.get<TransactionListResponse>(`/transactions/recent`);
 };

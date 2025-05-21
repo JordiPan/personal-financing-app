@@ -11,8 +11,7 @@ footer {
 .loading-icon {
   width: 5rem;
   display: block;
-  margin-right: 50%;
-  margin-left: auto;
+  margin: 0 auto;
   outline: none;
 }
 
