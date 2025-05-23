@@ -41,6 +41,13 @@ h1 {
   background-color: var(--sub-background-color-dark);
   border-radius: var(--border-radius);
 }
+
+.inactive {
+  user-select: none;
+  pointer-events: none;
+  background-color: var(--hover-color-dark) !important;
+  color: grey !important;
+}
 /* html {
   height: 100vh;
 } */

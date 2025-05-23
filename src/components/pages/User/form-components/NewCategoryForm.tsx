@@ -13,8 +13,7 @@ export const NewCategoryForm = ({ setCategories, setShowForm, axiosPrivate }: Pr
   const [description, setDescription] = useState("");
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //id doesnt get used in api actually but interface is doing this, could fix later
-    createCategory({id: 0, name, description}, axiosPrivate)
+    createCategory({name, description}, axiosPrivate)
       .then((res) => {
         setCategories((prev) => [...prev, res.data.category])
       })

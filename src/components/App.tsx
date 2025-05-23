@@ -17,6 +17,7 @@ import UserProfile from "./pages/User/UserProfile";
 import { UserRedirect } from "./UserRedirect";
 import { CategoryTransactions } from "./pages/User/CategoryTransactions";
 import { UserLayout } from "./layout/UserLayout";
+import { CreateTransactionForm } from "./pages/User/CreateTransactionForm";
 
 function App() {
   //maybe make a layout element to add a container class for default main content styling
@@ -37,6 +38,7 @@ function App() {
               <Route element={<RequireAuth allowedRoles={["user"]} />}>
                 <Route element={<UserLayout />}>
                   <Route path="/dashboard" index element={<Dashboard />} />
+                  <Route path="/transactions/create" element={<CreateTransactionForm />} />
                   <Route path="/categories" element={<UserCategories />} />
                   <Route
                     path="/categories/:slug"

@@ -5,6 +5,7 @@ import { Transaction } from "../../../../api/interfaces/transaction/Transaction"
 import { NewTransactionForm } from "../form-components/NewTransactionForm";
 // import { useAuth } from "../../../../context/AuthContext";
 import Loading from "../../../Loading";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 //grabs recent 5 transactions
@@ -12,8 +13,7 @@ export const LatestTransactions = () => {
   const axiosPrivate = useAxiosPrivate();
   const [isLoading, setIsLoading] = useState(true);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [showForm, setShowForm] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     //not working atm
     getRecentTransactions(axiosPrivate)
@@ -52,20 +52,11 @@ export const LatestTransactions = () => {
       <button
         className="make-transaction form-button"
         onClick={() => {
-          setShowForm(true);
+          navigate('/transactions/create');
         }}
       >
-        + Make a new Transaction!
+        + Register a new Transaction!
       </button>
-      {showForm ? (
-        <NewTransactionForm
-          setTransactions={setTransactions}
-          setShowForm={setShowForm}
-          axiosPrivate={axiosPrivate}
-        />
-      ) : (
-        <></>
-      )}
     </div>
   );
 };

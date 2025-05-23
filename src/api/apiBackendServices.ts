@@ -49,7 +49,7 @@ export const getCategories = async (axios:AxiosInstance) => {
 export const getItemsInCategory = async (id: string, axios:AxiosInstance) => {
   return await axios.get<ItemsInCategoryResponse>(`/categories/${id}`);
 };
-export const createCategory = async (category:Category, axios:AxiosInstance) => {
+export const createCategory = async (category:Omit<Category, 'id'>, axios:AxiosInstance) => {
   return await axios.post<CategoryResponse>(`/categories`, category);
 };
 export const updateCategory = async (categoryId: number, category:Category, axios:AxiosInstance) => {

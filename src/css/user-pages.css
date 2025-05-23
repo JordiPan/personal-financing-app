@@ -100,3 +100,10 @@
   border-radius: 0;
   border-color: transparent;
 }
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+.button-group > .form-button {
+  padding: 1rem;
+}
