@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Transaction } from "../../../api/interfaces/transaction/Transaction";
-import { Item } from "../../../api/interfaces/item/Item";
 import { TransactionInfoForm } from "./sub-components/TransactionInfoForm";
 import { TransactionItemsForm } from "./form-components/TransactionItemsForm";
 import { TransactionOverview } from "./form-components/TransactionOverview";
+import { TransactionItem } from "../../../api/interfaces/transaction/TransactionItem";
 
 export const CreateTransactionForm = () => {
   const date = new Date();
@@ -18,8 +18,8 @@ export const CreateTransactionForm = () => {
   };
   const [step, setStep] = useState<number>(1);
   const [transactionInfo, setTransactionInfo] = useState<Omit<Transaction, "id">>(templateTransaction);
-  const [existingItems, setExistingItems] = useState<Item[]>([]);
-  const [newItems, setNewItems] = useState<Omit<Item, "id">[]>([]);
+  const [existingItems, setExistingItems] = useState<TransactionItem[]>([]);
+  const [newItems, setNewItems] = useState<TransactionItem[]>([]);
 
   const stepState = {data: step, setData: setStep};
   const transactionState = {data: transactionInfo, setData: setTransactionInfo};
@@ -51,10 +51,10 @@ export const CreateTransactionForm = () => {
               setStep((prev) => (prev -= 1));
             }}
           >
-            back
+            Back
           </button>
         ) : (
-          <button className="form-button inactive">back</button>
+          <button className="form-button inactive">Back</button>
         )}
 
         {step >= forms.length ? (
@@ -64,7 +64,7 @@ export const CreateTransactionForm = () => {
               handleSubmit;
             }}
           >
-            submit
+            Submit
           </button>
         ) : (
           <button
@@ -73,7 +73,7 @@ export const CreateTransactionForm = () => {
               setStep((prev) => (prev += 1));
             }}
           >
-            next
+            Next
           </button>
         )}
       </div>
