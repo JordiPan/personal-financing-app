@@ -11,6 +11,7 @@
   --main-background-color-dark: rgb(20, 20, 31);
   --sub-background-color-dark: rgb(44, 44, 63);
   --main-border-color-dark: 1px solid rgb(58, 58, 90);
+  --sub-border-color-dark: 1px solid rgb(83, 83, 128);
   --hover-color-dark: rgb(58, 58, 90);
   --border-radius: 0.5rem;
 }
@@ -56,6 +57,11 @@ h1 {
   pointer-events: none;
   background-color: var(--hover-color-dark) !important;
   color: grey !important;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); 
+  cursor: pointer;
 }
 /* html {
   height: 100vh;

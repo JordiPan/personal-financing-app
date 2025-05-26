@@ -10,6 +10,7 @@ export const CreateTransactionForm = () => {
   const templateTransaction: Omit<Transaction, "id"> = {
     name: "",
     description: "",
+    direction: "subtract",
     recurrence: "once",
     date: date.toISOString().split('T')[0],
     total: 0,

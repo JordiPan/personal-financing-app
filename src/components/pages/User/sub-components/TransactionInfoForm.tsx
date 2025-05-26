@@ -13,24 +13,29 @@ interface Props {
 export const TransactionInfoForm = ({ stepState, transactionState }: Props) => {
   const [showActive, setShowActive] = useState(false);
 
-  const handleRecurrence = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if(e.target.value !== 'once') {
-      setShowActive(true)
+  useEffect(() => {
+    if (transactionState.data.recurrence !== "once") {
+      setShowActive(true);
     }
-    else {
+  }, []);
+
+  const handleRecurrence = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value !== "once") {
+      setShowActive(true);
+    } else {
       //even when not used a 'once' transaction is logically true to be active
-      setShowActive(false)
+      setShowActive(false);
       transactionState.setData((prev) => ({
-      ...prev,
-      active: true,
-    }));
+        ...prev,
+        active: true,
+      }));
     }
     transactionState.setData((prev) => ({
       ...prev,
       recurrence: e.target.value,
     }));
   };
-  
+
   const handleActive = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value === "true";
     transactionState.setData((prev) => ({
@@ -38,11 +43,30 @@ export const TransactionInfoForm = ({ stepState, transactionState }: Props) => {
       active: value,
     }));
   };
+  const handleDirection = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    transactionState.setData((prev) => ({
+      ...prev,
+      direction: e.target.value,
+    }));
+  };
   return (
     <>
       <h1>Step {stepState.data} | Basic info</h1>
-      <form
-        className="transaction-form default-form-container container-color-dark">
+      <form className="transaction-form default-form-container container-color-dark">
+        <div className="input-group">
+          <label htmlFor="transaction-direction">Type</label>
+          <select
+            name="select"
+            id="transaction-direction"
+            value={transactionState.data.direction}
+            className="input"
+            required
+            onChange={handleDirection}
+          >
+            <option value="add">Positive</option>
+            <option value="subtract">Negative</option>
+          </select>
+        </div>
         <div className="input-group">
           <label htmlFor="transaction-name">Name</label>
           <input
@@ -76,6 +100,22 @@ export const TransactionInfoForm = ({ stepState, transactionState }: Props) => {
               }));
             }}
           ></textarea>
+        </div>
+        <div className="input-group">
+          <label htmlFor="transaction-date">Purchase date</label>
+          <input
+            name="date"
+            type="date"
+            id="transaction-date"
+            className="input"
+            value={transactionState.data.date}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              transactionState.setData((prev) => ({
+                ...prev,
+                date: e.target.value,
+              }));
+            }}
+          />
         </div>
         <div className="input-group">
           <label htmlFor="transaction-recurrence">Recurrence</label>
