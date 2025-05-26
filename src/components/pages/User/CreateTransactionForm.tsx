@@ -12,7 +12,6 @@ export const CreateTransactionForm = () => {
     description: "",
     recurrence: "once",
     date: date.toISOString().split('T')[0],
-    is_item: true,
     total: 0,
     active: true,
   };
@@ -23,7 +22,7 @@ export const CreateTransactionForm = () => {
 
   const stepState = {data: step, setData: setStep};
   const transactionState = {data: transactionInfo, setData: setTransactionInfo};
-  const existingItemsItemsState = {data: existingItems, setData: setExistingItems};
+  const existingItemsState = {data: existingItems, setData: setExistingItems};
   const newItemsState = {data: newItems, setData: setNewItems};
   
   useEffect(() => {
@@ -31,7 +30,7 @@ export const CreateTransactionForm = () => {
   });
   const forms = [
     <TransactionInfoForm stepState={stepState} transactionState={transactionState}/>,
-    <TransactionItemsForm step={step} setStep={setStep} />,
+    <TransactionItemsForm stepState={stepState} existingItemsState={existingItemsState} newItemsState={newItemsState}/>,
     <TransactionOverview step={step} setStep={setStep} />,
   ];
 

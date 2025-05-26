@@ -47,23 +47,14 @@
 .create-category-form {
   display: flex;
   flex-direction: column;
-  /* position: fixed !important;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
   text-align: center;
   z-index: 6969;
   width: 25rem;
   padding: 1rem;
-  /* background-color: #c3d7f7 !important; */
-  /* box-shadow: 1px 2px 10px rgba(255, 255, 255, 0.5),
-    0 0 0 999em rgba(0, 0, 0, 0.8); */
   border-radius: var(--border-radius);
 }
 
 .create-category-form > .input {
-  /* margin-left: 1rem; */
-  /* margin-right: 1rem; */
   margin-bottom: 1rem;
 }
 
@@ -106,4 +97,8 @@
 }
 .button-group > .form-button {
   padding: 1rem;
+}
+
+.transaction-form > input {
+  gap: 1rem;
 }

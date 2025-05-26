@@ -45,7 +45,7 @@ export const UserForm = ({ user, setUser, onClose }: Props) => {
   };
   return (
     <div className="update-form">
-      <form className="user-form" onSubmit={handleSubmit}>
+      <form className="default-form-container" onSubmit={handleSubmit}>
         <h1>Update info</h1>
         <label htmlFor="fName-input" className="form-label">
           First Name
