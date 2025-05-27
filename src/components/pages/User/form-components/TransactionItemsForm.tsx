@@ -1,18 +1,17 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { AddExistingItemForm } from "./addExistingItemForm";
+import { AddExistingItemForm } from "./AddExistingItemForm";
 import { AddNewItemForm } from "./AddNewItemForm";
-import { TransactionItem } from "../../../../api/interfaces/transaction/TransactionItem";
-
-
+import { NewTransactionItem } from "../../../../api/interfaces/transaction/NewTransactionItem";
+import { ExistingTransactionItem } from "../../../../api/interfaces/transaction/ExistingTransactionItem";
 interface Props {
   stepState: { data: number; setData: Dispatch<SetStateAction<number>> };
   existingItemsState: {
-    data: TransactionItem[];
-    setData: Dispatch<SetStateAction<TransactionItem[]>>;
+    data: ExistingTransactionItem[];
+    setData: Dispatch<SetStateAction<ExistingTransactionItem[]>>;
   };
   newItemsState: {
-    data: TransactionItem[];
-    setData: Dispatch<SetStateAction<TransactionItem[]>>;
+    data: NewTransactionItem[];
+    setData: Dispatch<SetStateAction<NewTransactionItem[]>>;
   };
 }
 
@@ -24,8 +23,18 @@ export const TransactionItemsForm = ({
   const [showExistingItemForm, setShowExistingItemForm] = useState(false);
   const [showNewItemForm, setShowNewItemForm] = useState(false);
 
-  useEffect(() => {});
-
+  const handleDelete = (
+    setter:
+      | Dispatch<SetStateAction<ExistingTransactionItem[]>>
+      | Dispatch<SetStateAction<NewTransactionItem[]>>,
+    index: number
+  ) => {
+    setter((prev) => {
+      const updated = [...prev];
+      updated.splice(index, 1);
+      return updated;
+    });
+  };
   return (
     <>
       <h1>Step {stepState.data} | Items bought in transaction</h1>
@@ -35,49 +44,56 @@ export const TransactionItemsForm = ({
             setShowExistingItemForm={setShowExistingItemForm}
           />
         ) : (
-          <AddNewItemForm setShowNewItemForm={setShowNewItemForm} />
+          <AddNewItemForm
+            setShowNewItemForm={setShowNewItemForm}
+            newItemsState={newItemsState}
+          />
         )
       ) : (
         <form className="transaction-form default-form-container">
           <div className="items-list">
-            <div className="item">
-              <p className="item-text">Ackahol | -20.23 | x3</p>
-              <div className="item-button-group">
-                <button className="form-button">edit</button>
-                <button className="form-button">remove</button>
+            {existingItemsState.data.map((item, key) => (
+              <div className="item" key={key}>
+                <p className="item-text">
+                  {item.name} | {item.price} | {item.quantity}
+                </p>
+                <div className="item-button-group">
+                  <button className="form-button">edit</button>
+                  <button
+                    className="form-button"
+                    onClick={() =>
+                      handleDelete(existingItemsState.setData, key)
+                    }
+                  >
+                    remove
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className="item">
-              <p className="item-text">Medicine | -20.23 | x1</p>
-              <div className="item-button-group">
-                <button className="form-button">edit</button>
-                <button className="form-button">remove</button>
+            ))}
+
+            {newItemsState.data.map((item, key) => (
+              <div className="item" key={key}>
+                <p className="item-text">
+                  {item.name} | {item.price} | x{item.quantity}
+                </p>
+                <div className="item-button-group">
+                  <button className="form-button">edit</button>
+                  <button
+                    className="form-button"
+                    onClick={() => handleDelete(newItemsState.setData, key)}
+                  >
+                    remove
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className="item">
-              <p className="item-text">Back Alley BJ | -290.23 | x3</p>
-              <div className="item-button-group">
-                <button className="form-button">edit</button>
-                <button className="form-button">remove</button>
-              </div>
-            </div>
-            <div className="item">
-              <p className="item-text">Ackahol | -20.23 | x3</p>
-              <div className="item-button-group">
-                <button className="form-button">edit</button>
-                <button className="form-button">remove</button>
-              </div>
-            </div>
-            <div className="item">
-              <p className="item-text">Ackahol | -20.23 | x3</p>
-              <div className="item-button-group">
-                <button className="form-button">edit</button>
-                <button className="form-button">remove</button>
-              </div>
-            </div>
+            ))}
+
+            {newItemsState.data.length === 0 &&
+              existingItemsState.data.length === 0 && <p>No Items selected</p>}
           </div>
           <div className="add-button-group">
             <button
+              type="button"
               className="container-color-dark form-button"
               onClick={() => {
                 setShowExistingItemForm(true);
@@ -86,6 +102,7 @@ export const TransactionItemsForm = ({
               Add existing item
             </button>
             <button
+              type="button"
               className="container-color-dark form-button"
               onClick={() => {
                 setShowNewItemForm(true);
