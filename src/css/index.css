@@ -13,6 +13,7 @@
   --main-border-color-dark: 1px solid rgb(58, 58, 90);
   --sub-border-color-dark: 1px solid rgb(83, 83, 128);
   --hover-color-dark: rgb(58, 58, 90);
+  --ligher-hover-color-dark: rgb(82, 82, 129);
   --border-radius: 0.5rem;
 }
 .container {

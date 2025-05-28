@@ -13,7 +13,7 @@ interface Props {
     setData: Dispatch<SetStateAction<NewTransactionItem[]>>;
   };
 }
-//TODO: CACHE THE DB RESULTS LATER
+//TODO: IMPLEMENT CACHING THE DB RESULTS LATER
 export const AddNewItemForm = ({ setShowNewItemForm, newItemsState }: Props) => {
   const [item, setItem] = useState<NewTransactionItem>({
     name: "",

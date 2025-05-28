@@ -29,7 +29,8 @@ export const TransactionItemsForm = ({
       | Dispatch<SetStateAction<NewTransactionItem[]>>,
     index: number
   ) => {
-    setter((prev) => {
+    //any should be removed and handledelete should be seperated
+    setter((prev: any) => {
       const updated = [...prev];
       updated.splice(index, 1);
       return updated;
@@ -42,6 +43,7 @@ export const TransactionItemsForm = ({
         showExistingItemForm ? (
           <AddExistingItemForm
             setShowExistingItemForm={setShowExistingItemForm}
+            existingItemsState={existingItemsState}
           />
         ) : (
           <AddNewItemForm
@@ -55,7 +57,7 @@ export const TransactionItemsForm = ({
             {existingItemsState.data.map((item, key) => (
               <div className="item" key={key}>
                 <p className="item-text">
-                  {item.name} | {item.price} | {item.quantity}
+                  {item.name} | {item.price} | x{item.quantity}
                 </p>
                 <div className="item-button-group">
                   <button className="form-button">edit</button>
