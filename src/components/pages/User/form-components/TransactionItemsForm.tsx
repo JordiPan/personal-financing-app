@@ -36,6 +36,8 @@ export const TransactionItemsForm = ({
       return updated;
     });
   };
+
+  //backend needs to differentiate between existing (with ID) and new (without ID), that's why itemlists are separate
   return (
     <>
       <h1>Step {stepState.data} | Items bought in transaction</h1>
@@ -53,46 +55,6 @@ export const TransactionItemsForm = ({
         )
       ) : (
         <form className="transaction-form default-form-container">
-          <div className="items-list">
-            {existingItemsState.data.map((item, key) => (
-              <div className="item" key={key}>
-                <p className="item-text">
-                  {item.name} | {item.price} | x{item.quantity}
-                </p>
-                <div className="item-button-group">
-                  <button className="form-button">edit</button>
-                  <button
-                    className="form-button"
-                    onClick={() =>
-                      handleDelete(existingItemsState.setData, key)
-                    }
-                  >
-                    remove
-                  </button>
-                </div>
-              </div>
-            ))}
-
-            {newItemsState.data.map((item, key) => (
-              <div className="item" key={key}>
-                <p className="item-text">
-                  {item.name} | {item.price} | x{item.quantity}
-                </p>
-                <div className="item-button-group">
-                  <button className="form-button">edit</button>
-                  <button
-                    className="form-button"
-                    onClick={() => handleDelete(newItemsState.setData, key)}
-                  >
-                    remove
-                  </button>
-                </div>
-              </div>
-            ))}
-
-            {newItemsState.data.length === 0 &&
-              existingItemsState.data.length === 0 && <p>No Items selected</p>}
-          </div>
           <div className="add-button-group">
             <button
               type="button"
@@ -112,6 +74,48 @@ export const TransactionItemsForm = ({
             >
               Add new item
             </button>
+          </div>
+          <div className="items-list">
+            {existingItemsState.data.map((item, key) => (
+              <div className="item" key={key}>
+                <p className="item-text">
+                  {item.name} | {item.price} | x{item.quantity}
+                </p>
+                <div className="item-button-group">
+                  <button className="form-button" type="button">edit</button>
+                  <button
+                    className="form-button"
+                    type="button"
+                    onClick={() =>
+                      handleDelete(existingItemsState.setData, key)
+                    }
+                  >
+                    remove
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            {newItemsState.data.map((item, key) => (
+              <div className="item" key={key}>
+                <p className="item-text">
+                  {item.name} | {item.price} | x{item.quantity}
+                </p>
+                <div className="item-button-group">
+                  <button className="form-button" type="button">edit</button>
+                  <button
+                    className="form-button"
+                    type="button"
+                    onClick={() => handleDelete(newItemsState.setData, key)}
+                  >
+                    remove
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            {newItemsState.data.length === 0 &&
+              existingItemsState.data.length === 0 && <p>No Items selected</p>}
           </div>
         </form>
       )}
