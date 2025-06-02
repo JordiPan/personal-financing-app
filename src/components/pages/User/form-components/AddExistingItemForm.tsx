@@ -146,7 +146,7 @@ export const AddExistingItemForm = ({
           <p>Nothing chosen</p>
         )}
       </div>
-      <input type="submit" value="Add Items" className="form-button" />
+      <input type="submit" value="Add Item(s)" className="form-button" />
 
       <button
         type="button"

@@ -176,3 +176,9 @@
 .quantity-number {
   margin: 0.2rem
 }
+.error-message {
+  color: red;
+}
+.transaction-info {
+  border-bottom: var(--sub-border-color-dark);
+}

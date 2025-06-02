@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Transaction } from "../../../api/interfaces/transaction/Transaction";
 import { TransactionInfoForm } from "./form-components/TransactionInfoForm";
 import { TransactionItemsForm } from "./form-components/TransactionItemsForm";
@@ -21,13 +21,12 @@ export const CreateTransactionForm = () => {
   const [step, setStep] = useState<number>(1);
   const [transactionInfo, setTransactionInfo] =
     useState<Omit<Transaction, "id">>(templateTransaction);
-  const [existingItems, setExistingItems] = useState<ExistingTransactionItem[]>([]);
+  const [existingItems, setExistingItems] = useState<ExistingTransactionItem[]>(
+    []
+  );
   const [newItems, setNewItems] = useState<NewTransactionItem[]>([]);
-
-  const stepState = {
-    data: step,
-    setData: setStep,
-  };
+  const validationRef = useRef<{ validate: () => boolean }>(null);
+  const [errorMessage, setErrorMessage] = useState("");
   const transactionState = {
     data: transactionInfo,
     setData: setTransactionInfo,
@@ -48,17 +47,56 @@ export const CreateTransactionForm = () => {
   });
   const forms = [
     <TransactionInfoForm
-      stepState={stepState}
+      step={step}
       transactionState={transactionState}
+      ref={validationRef}
     />,
     <TransactionItemsForm
-      stepState={stepState}
+      step={step}
       existingItemsState={existingItemsState}
       newItemsState={newItemsState}
+      errorMessage={errorMessage}
     />,
-    <TransactionOverview step={step} setStep={setStep} />,
+    <TransactionOverview
+      step={step}
+      transactionState={transactionState}
+      existingItems={existingItems}
+      newItems={newItems}
+      errorMessage={errorMessage}
+    />,
   ];
 
+  const handleSteps = (direction: number) => {
+    switch (step) {
+      case 1: {
+        if (direction !== 1) {
+          setStep((prev) => (prev += direction));
+          break;
+        }
+        if (validationRef.current?.validate()) {
+          setStep((prev) => (prev += direction));
+        }
+        break;
+      }
+      case 2: {
+        setErrorMessage("");
+        if (direction !== 1) {
+          setStep((prev) => (prev += direction));
+          break;
+        }
+        if (existingItems.length !== 0 || newItems.length !== 0) {
+          setStep((prev) => (prev += direction));
+        } else {
+          setErrorMessage("Select at least 1 item!");
+        }
+        break;
+      }
+      default: {
+        setStep((prev) => (prev += direction));
+      }
+    }
+    // setStep((prev) => prev+=direction)
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Submitted!!");
@@ -69,12 +107,7 @@ export const CreateTransactionForm = () => {
       {forms[step - 1]}
       <div className="button-group">
         {step - 1 > 0 ? (
-          <button
-            className="form-button"
-            onClick={() => {
-              setStep((prev) => (prev -= 1));
-            }}
-          >
+          <button className="form-button" onClick={() => handleSteps(-1)}>
             Back
           </button>
         ) : (
@@ -98,12 +131,7 @@ export const CreateTransactionForm = () => {
             Submit
           </button>
         ) : (
-          <button
-            className="form-button"
-            onClick={() => {
-              setStep((prev) => (prev += 1));
-            }}
-          >
+          <button className="form-button" onClick={() => handleSteps(1)}>
             Next
           </button>
         )}

@@ -4,7 +4,7 @@ import { AddNewItemForm } from "./AddNewItemForm";
 import { NewTransactionItem } from "../../../../api/interfaces/transaction/NewTransactionItem";
 import { ExistingTransactionItem } from "../../../../api/interfaces/transaction/ExistingTransactionItem";
 interface Props {
-  stepState: { data: number; setData: Dispatch<SetStateAction<number>> };
+  step: number;
   existingItemsState: {
     data: ExistingTransactionItem[];
     setData: Dispatch<SetStateAction<ExistingTransactionItem[]>>;
@@ -13,12 +13,14 @@ interface Props {
     data: NewTransactionItem[];
     setData: Dispatch<SetStateAction<NewTransactionItem[]>>;
   };
+  errorMessage: string;
 }
 
 export const TransactionItemsForm = ({
-  stepState,
+  step,
   existingItemsState,
   newItemsState,
+  errorMessage
 }: Props) => {
   const [showExistingItemForm, setShowExistingItemForm] = useState(false);
   const [showNewItemForm, setShowNewItemForm] = useState(false);
@@ -29,7 +31,7 @@ export const TransactionItemsForm = ({
       | Dispatch<SetStateAction<NewTransactionItem[]>>,
     index: number
   ) => {
-    //any should be removed and handledelete should be seperated
+    //any should be removed and handledelete should be seperated for clarity
     setter((prev: any) => {
       const updated = [...prev];
       updated.splice(index, 1);
@@ -40,7 +42,7 @@ export const TransactionItemsForm = ({
   //backend needs to differentiate between existing (with ID) and new (without ID), that's why itemlists are separate
   return (
     <>
-      <h1>Step {stepState.data} | Items bought in transaction</h1>
+      <h1>Step {step} | Items bought in transaction</h1>
       {showExistingItemForm || showNewItemForm ? (
         showExistingItemForm ? (
           <AddExistingItemForm
@@ -82,7 +84,7 @@ export const TransactionItemsForm = ({
                   {item.name} | {item.price} | x{item.quantity}
                 </p>
                 <div className="item-button-group">
-                  <button className="form-button" type="button">edit</button>
+                  <button className="form-button inactive" type="button" disabled>edit</button>
                   <button
                     className="form-button"
                     type="button"
@@ -102,7 +104,7 @@ export const TransactionItemsForm = ({
                   {item.name} | {item.price} | x{item.quantity}
                 </p>
                 <div className="item-button-group">
-                  <button className="form-button" type="button">edit</button>
+                  <button className="form-button inactive" type="button" disabled>edit</button>
                   <button
                     className="form-button"
                     type="button"
@@ -117,6 +119,7 @@ export const TransactionItemsForm = ({
             {newItemsState.data.length === 0 &&
               existingItemsState.data.length === 0 && <p>No Items selected</p>}
           </div>
+          <p className="error-message">{errorMessage}</p>
         </form>
       )}
     </>
