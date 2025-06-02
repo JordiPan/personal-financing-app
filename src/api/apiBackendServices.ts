@@ -13,6 +13,9 @@ import { TransactionListResponse } from "./interfaces/transaction/TransactionLis
 import { ItemsInCategoryResponse } from "./interfaces/item/ItemsInCategoryResponse";
 import { CountriesAndCategoriesResponse } from "./interfaces/transaction/CountriesAndCategoriesResponse";
 import { UserItemsResponse } from "./interfaces/item/UserItemsResponse";
+import { Transaction } from "./interfaces/transaction/Transaction";
+import { TransactionResponse } from "./interfaces/transaction/TransactionResponse";
+import { CreateTransactionRequest } from "./interfaces/transaction/CreateTransactionRequest";
 
 //add try catch inside these functions instead of in the implementation!!!
 export const register = (data: RegisterRequest) => {
@@ -67,4 +70,7 @@ export const getCountriesAndCategories = async (axios:AxiosInstance) => {
 };
 export const getUserItems = async (axios:AxiosInstance) => {
   return await axios.get<UserItemsResponse>(`/items`);
+};
+export const createTransaction = async (transaction: CreateTransactionRequest, axios:AxiosInstance) => {
+  return await axios.post<TransactionResponse>(`/transactions`, transaction);
 };

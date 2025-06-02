@@ -11,14 +11,12 @@ type Props = {
     setData: Dispatch<SetStateAction<Omit<Transaction, "id">>>;
   };
   newItems: NewTransactionItem[];
-  errorMessage: string;
 };
 export const TransactionOverview = ({
   step,
   transactionState,
   existingItems,
-  newItems,
-  errorMessage,
+  newItems
 }: Props) => {
   useEffect(() => {
     let total = 0;
@@ -48,7 +46,7 @@ export const TransactionOverview = ({
             {existingItems.map((item, key) => (
               <div className="item" key={key}>
                 <p className="item-text">
-                  {item.name} | {item.price} | x{item.quantity}
+                  {item.name} | {item.price} | {item.category} | x{item.quantity}
                 </p>
               </div>
             ))}
@@ -58,13 +56,13 @@ export const TransactionOverview = ({
             {newItems.map((item, key) => (
               <div className="item" key={key}>
                 <p className="item-text">
-                  {item.name} | {item.price} | x{item.quantity}
+                  {item.name} | {item.price} | {item.category} | x{item.quantity}
                 </p>
               </div>
             ))}
           </div>
         </div>
-        <p>Total amount: {transactionState.data.total}</p>
+        <p>Total amount: {transactionState.data.total.toFixed(2)}</p>
       </div>
     </>
   );

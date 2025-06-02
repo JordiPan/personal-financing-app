@@ -6,6 +6,9 @@ import { TransactionOverview } from "./form-components/TransactionOverview";
 import { NewTransactionItem } from "../../../api/interfaces/transaction/NewTransactionItem";
 import { useNavigate } from "react-router-dom";
 import { ExistingTransactionItem } from "../../../api/interfaces/transaction/ExistingTransactionItem";
+import { createTransaction } from "../../../api/apiBackendServices";
+import { useAxiosPrivate } from "../../../hooks/useAxiosPrivate";
+import { CreateTransactionRequest } from "../../../api/interfaces/transaction/CreateTransactionRequest";
 
 export const CreateTransactionForm = () => {
   const date = new Date();
@@ -27,6 +30,7 @@ export const CreateTransactionForm = () => {
   const [newItems, setNewItems] = useState<NewTransactionItem[]>([]);
   const validationRef = useRef<{ validate: () => boolean }>(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const axiosPrivate = useAxiosPrivate();
   const transactionState = {
     data: transactionInfo,
     setData: setTransactionInfo,
@@ -62,7 +66,6 @@ export const CreateTransactionForm = () => {
       transactionState={transactionState}
       existingItems={existingItems}
       newItems={newItems}
-      errorMessage={errorMessage}
     />,
   ];
 
@@ -97,9 +100,20 @@ export const CreateTransactionForm = () => {
     }
     // setStep((prev) => prev+=direction)
   };
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Submitted!!");
+  const handleSubmit = async () => {
+    console.log("submitted!!")
+    const transaction: CreateTransactionRequest = {
+      ...transactionInfo,
+      existingItems: [...existingItems],
+      newItems: [...newItems],
+    };
+    // console.log(transaction);
+    createTransaction(transaction, axiosPrivate)
+      .then((res) => {})
+      .catch((res) => {})
+      .finally(() => {
+        navigate("/dashboard");
+      });
   };
 
   return (
@@ -124,9 +138,7 @@ export const CreateTransactionForm = () => {
         {step >= forms.length ? (
           <button
             className="form-button"
-            onClick={() => {
-              handleSubmit;
-            }}
+            onClick={() => handleSubmit()}
           >
             Submit
           </button>
