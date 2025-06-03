@@ -107,18 +107,21 @@ export const CreateTransactionForm = () => {
       existingItems: [...existingItems],
       newItems: [...newItems],
     };
-    // console.log(transaction);
+    console.log(transaction);
     createTransaction(transaction, axiosPrivate)
-      .then((res) => {})
-      .catch((res) => {})
-      .finally(() => {
+      .then((res) => {
+        console.log(res);
         navigate("/dashboard");
-      });
+      })
+      .catch((res) => {
+        console.log(res)
+      })
   };
 
   return (
     <div className="container container-color-dark">
       {forms[step - 1]}
+
       <div className="button-group">
         {step - 1 > 0 ? (
           <button className="form-button" onClick={() => handleSteps(-1)}>

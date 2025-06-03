@@ -61,7 +61,7 @@ export const updateCategory = async (categoryId: number, category:Category, axio
   return await axios.post<CategoryResponse>(`/categories/${categoryId}`, category);
 };
 export const getRecentTransactions = async (axios:AxiosInstance) => {
-  return await axios.get<TransactionListResponse>(`/transactions/recent`);
+  return axios.get<TransactionListResponse>(`/transactions/recent`);
 };
 //for the transaction creation selects in form
 //not sure if I should split the get for countries and categories

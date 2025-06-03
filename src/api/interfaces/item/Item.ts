@@ -3,8 +3,8 @@ export interface Item {
   name: string;
   description: string;
   price: string;
-  country: number;
-  category: number; 
+  country_id: number;
+  category_id: number; 
   sellable: boolean;
   // img_link: string;
   // card_api_id: string;

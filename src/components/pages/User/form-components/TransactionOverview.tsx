@@ -46,7 +46,7 @@ export const TransactionOverview = ({
             {existingItems.map((item, key) => (
               <div className="item" key={key}>
                 <p className="item-text">
-                  {item.name} | {item.price} | {item.category} | x{item.quantity}
+                  {item.name} | {item.price} | x{item.quantity}
                 </p>
               </div>
             ))}
@@ -56,7 +56,7 @@ export const TransactionOverview = ({
             {newItems.map((item, key) => (
               <div className="item" key={key}>
                 <p className="item-text">
-                  {item.name} | {item.price} | {item.category} | x{item.quantity}
+                  {item.name} | {item.price} | x{item.quantity}
                 </p>
               </div>
             ))}

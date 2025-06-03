@@ -136,7 +136,7 @@ export const AddNewItemForm = ({ setShowNewItemForm, newItemsState }: Props) => 
               <select
                 name="select"
                 id="item-country"
-                value={item.country}
+                value={item.country_id}
                 className="input"
                 required
                 onChange={(e) => {
@@ -164,6 +164,7 @@ export const AddNewItemForm = ({ setShowNewItemForm, newItemsState }: Props) => 
                 id="item-category"
                 className="input"
                 required
+                defaultValue=""
                 onChange={(e) => {
                   setItem((prev) => ({
                     ...prev,
@@ -171,7 +172,7 @@ export const AddNewItemForm = ({ setShowNewItemForm, newItemsState }: Props) => 
                   }));
                 }}
               >
-                <option value="" disabled hidden selected>
+                <option value="" disabled hidden>
                   -- Select an option --
                 </option>
                 {categories.map((category, key) => {

@@ -116,31 +116,29 @@ export const AddExistingItemForm = ({
       <div className="chosen-items-list items-list">
         {chosenItems.length !== 0 ? (
           chosenItems.map((item, key) => (
-            <>
-              <div className="chosen-item item" key={key}>
-                <p className="item-text">
-                  {item.name} | {item.price}
-                </p>
-                <div className="chosen-item-button-group">
-                  <button
-                    type="button"
-                    className="form-button"
-                    onClick={() => handleQuantity(item.id, -1)}
-                  >
-                    -
-                  </button>
-                  {/* change to input later */}
-                  <p className="quantity-number">{item.quantity}</p>
-                  <button
-                    type="button"
-                    className="form-button"
-                    onClick={() => handleQuantity(item.id, 1)}
-                  >
-                    +
-                  </button>
-                </div>
+            <div className="chosen-item item" key={key}>
+              <p className="item-text">
+                {item.name} | {item.price}
+              </p>
+              <div className="chosen-item-button-group">
+                <button
+                  type="button"
+                  className="form-button"
+                  onClick={() => handleQuantity(item.id, -1)}
+                >
+                  -
+                </button>
+                {/* change to input later */}
+                <p className="quantity-number">{item.quantity}</p>
+                <button
+                  type="button"
+                  className="form-button"
+                  onClick={() => handleQuantity(item.id, 1)}
+                >
+                  +
+                </button>
               </div>
-            </>
+            </div>
           ))
         ) : (
           <p>Nothing chosen</p>
