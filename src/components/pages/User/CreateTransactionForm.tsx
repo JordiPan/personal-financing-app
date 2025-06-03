@@ -9,6 +9,7 @@ import { ExistingTransactionItem } from "../../../api/interfaces/transaction/Exi
 import { createTransaction } from "../../../api/apiBackendServices";
 import { useAxiosPrivate } from "../../../hooks/useAxiosPrivate";
 import { CreateTransactionRequest } from "../../../api/interfaces/transaction/CreateTransactionRequest";
+import { AxiosError } from "axios";
 
 export const CreateTransactionForm = () => {
   const date = new Date();
@@ -101,7 +102,7 @@ export const CreateTransactionForm = () => {
     // setStep((prev) => prev+=direction)
   };
   const handleSubmit = async () => {
-    console.log("submitted!!")
+    console.log("submitted!!");
     const transaction: CreateTransactionRequest = {
       ...transactionInfo,
       existingItems: [...existingItems],
@@ -114,14 +115,15 @@ export const CreateTransactionForm = () => {
         navigate("/dashboard");
       })
       .catch((res) => {
-        console.log(res)
-      })
+        setErrorMessage(res?.message)
+        console.log(res);
+      });
   };
 
   return (
     <div className="container container-color-dark">
       {forms[step - 1]}
-
+      <p className="error-message">{errorMessage}</p>
       <div className="button-group">
         {step - 1 > 0 ? (
           <button className="form-button" onClick={() => handleSteps(-1)}>
@@ -139,10 +141,7 @@ export const CreateTransactionForm = () => {
         )}
 
         {step >= forms.length ? (
-          <button
-            className="form-button"
-            onClick={() => handleSubmit()}
-          >
+          <button className="form-button" onClick={() => handleSubmit()}>
             Submit
           </button>
         ) : (

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getRecentTransactions } from "../../../../api/apiBackendServices";
 import { useAxiosPrivate } from "../../../../hooks/useAxiosPrivate";
 import { Transaction } from "../../../../api/interfaces/transaction/Transaction";
-import { NewTransactionForm } from "../form-components/NewTransactionForm";
 // import { useAuth } from "../../../../context/AuthContext";
 import Loading from "../../../Loading";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +14,6 @@ export const LatestTransactions = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const navigate = useNavigate();
   useEffect(() => {
-    //not working atm
     getRecentTransactions(axiosPrivate)
       .then((res) => {
         console.log(res.data.message);

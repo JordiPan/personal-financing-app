@@ -19,8 +19,8 @@ export const AddNewItemForm = ({ setShowNewItemForm, newItemsState }: Props) => 
     name: "",
     description: "",
     price: "",
-    country: 1,
-    category: 1,
+    country_id: 1,
+    category_id: 1,
     sellable: false,
     quantity: 1,
   });
