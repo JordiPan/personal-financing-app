@@ -27,13 +27,7 @@
 .back-button {
   margin-top: 1rem;
 }
-.categories-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
+
 .category {
   cursor: pointer;
   /* max-width: 18rem; */
@@ -181,4 +175,11 @@
 }
 .transaction-info {
   border-bottom: var(--sub-border-color-dark);
+}
+/* 4 gaps of 1 rem in a row*/
+.category-item {
+  padding: 1rem;
+  flex: 0 0 calc((100% - 4rem) / 5);
+  min-height: 8rem;
+  align-content: center;
 }

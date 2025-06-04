@@ -41,7 +41,7 @@ function UserCategories() {
       </button>
       <hr />
       <div className="categories-list-container">
-        <div className="categories-list">
+        <div className="categories-list buttons-list">
           <Loading isLoading={isLoading}>
             {categories.length !== 0 ? (
               <>

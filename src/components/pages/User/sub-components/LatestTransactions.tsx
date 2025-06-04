@@ -37,7 +37,7 @@ export const LatestTransactions = () => {
               {transactions.map((transaction) => {
                 return (
                   <button className="transaction form-button" key={transaction.id}>
-                    {transaction.name} | {transaction.total}
+                    {transaction.name} | {transaction.recurrence} | {transaction.total}
                   </button>
                 );
               })}

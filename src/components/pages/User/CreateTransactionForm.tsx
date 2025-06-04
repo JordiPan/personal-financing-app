@@ -9,7 +9,6 @@ import { ExistingTransactionItem } from "../../../api/interfaces/transaction/Exi
 import { createTransaction } from "../../../api/apiBackendServices";
 import { useAxiosPrivate } from "../../../hooks/useAxiosPrivate";
 import { CreateTransactionRequest } from "../../../api/interfaces/transaction/CreateTransactionRequest";
-import { AxiosError } from "axios";
 
 export const CreateTransactionForm = () => {
   const date = new Date();

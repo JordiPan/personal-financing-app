@@ -15,7 +15,7 @@ import UserItems from "./pages/User/UserItems";
 import PersistLogin from "./PersistLogin";
 import UserProfile from "./pages/User/UserProfile";
 import { UserRedirect } from "./UserRedirect";
-import { CategoryTransactions } from "./pages/User/CategoryTransactions";
+import { CategoryItems } from "./pages/User/CategoryItems";
 import { UserLayout } from "./layout/UserLayout";
 import { CreateTransactionForm } from "./pages/User/CreateTransactionForm";
 
@@ -42,7 +42,7 @@ function App() {
                   <Route path="/categories" element={<UserCategories />} />
                   <Route
                     path="/categories/:slug"
-                    element={<CategoryTransactions />}
+                    element={<CategoryItems />}
                   />
                   <Route path="/items" element={<UserItems />} />
                   <Route path="/profile" element={<UserProfile />} />

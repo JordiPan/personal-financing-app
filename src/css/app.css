@@ -151,3 +151,12 @@ textarea {
   margin-bottom: 1rem;
   text-align: left;
 }
+
+.buttons-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  
+}

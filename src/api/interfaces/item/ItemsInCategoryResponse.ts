@@ -1,7 +1,6 @@
 import { DefaultResponse } from "../DefaultResponse";
-import { Item } from "./Item";
-
+import { FullInfoItem } from "./FullInfoItem";
 
 export interface ItemsInCategoryResponse extends DefaultResponse{
-  items: Item[];
+  items: FullInfoItem[];
 }
