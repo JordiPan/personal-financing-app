@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 //grabs recent 5 transactions
-export const MonthlyIncome = () => {
+export const MonthlyOverview = () => {
   const axiosPrivate = useAxiosPrivate();
   const [isLoading, setIsLoading] = useState(true);
   const [incomeTransactions, setIncomeTransactions] = useState<Transaction[]>([]);
@@ -55,7 +55,7 @@ export const MonthlyIncome = () => {
               {expensesTransactions.map((transaction) => {
                 return (
                   <button className="transaction form-button" key={transaction.id}>
-                    {transaction.name} | {transaction.recurrence} | {transaction.total} | {transaction.date}
+                    {transaction.name} | {transaction.total} | {transaction.date}
                   </button>
                 );
               })}
@@ -71,7 +71,7 @@ export const MonthlyIncome = () => {
           navigate('/transactions/create');
         }}
       >
-        + Register a new Transaction!
+        + Register monthly transactions for more data!
       </button>
     </div>
   );

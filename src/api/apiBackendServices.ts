@@ -62,7 +62,7 @@ export const updateCategory = async (categoryId: number, category:Category, axio
   return await axios.post<CategoryResponse>(`/categories/${categoryId}`, category);
 };
 export const getRecentTransactions = async (axios:AxiosInstance) => {
-  return axios.get<TransactionListResponse>(`/transactions?amount=5&orderBy=desc`);
+  return await axios.get<TransactionListResponse>(`/transactions?amount=5&orderBy=desc`);
 };
 //for the transaction creation selects in form
 //not sure if I should split the get for countries and categories
@@ -76,5 +76,5 @@ export const createTransaction = async (transaction: CreateTransactionRequest, a
   return await axios.post<TransactionResponse>(`/transactions`, transaction);
 };
 export const getMonthlyOverview = async (axios:AxiosInstance) => {
-  return axios.get<MonthlyTransactionsResponse>(`/transactions?recurrence=monthly`);
+  return await axios.get<MonthlyTransactionsResponse>(`/transactions?recurrence=monthly`);
 };

@@ -28,9 +28,6 @@ function UserCategories() {
       });
   }, []);
 
-  const handleIncome = () => {
-
-  }
   return (
     <>
       <h1>Categories | Find all your purchased items by category!</h1>
