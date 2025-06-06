@@ -16,6 +16,7 @@ import { UserItemsResponse } from "./interfaces/item/UserItemsResponse";
 import { Transaction } from "./interfaces/transaction/Transaction";
 import { TransactionResponse } from "./interfaces/transaction/TransactionResponse";
 import { CreateTransactionRequest } from "./interfaces/transaction/CreateTransactionRequest";
+import { MonthlyTransactionsResponse } from "./interfaces/transaction/MonthlyTransactionsResponse";
 
 //add try catch inside these functions instead of in the implementation!!!
 export const register = (data: RegisterRequest) => {
@@ -61,7 +62,7 @@ export const updateCategory = async (categoryId: number, category:Category, axio
   return await axios.post<CategoryResponse>(`/categories/${categoryId}`, category);
 };
 export const getRecentTransactions = async (axios:AxiosInstance) => {
-  return axios.get<TransactionListResponse>(`/transactions/recent`);
+  return axios.get<TransactionListResponse>(`/transactions?amount=5&orderBy=desc`);
 };
 //for the transaction creation selects in form
 //not sure if I should split the get for countries and categories
@@ -73,4 +74,7 @@ export const getUserItems = async (axios:AxiosInstance) => {
 };
 export const createTransaction = async (transaction: CreateTransactionRequest, axios:AxiosInstance) => {
   return await axios.post<TransactionResponse>(`/transactions`, transaction);
+};
+export const getMonthlyOverview = async (axios:AxiosInstance) => {
+  return axios.get<MonthlyTransactionsResponse>(`/transactions?recurrence=monthly`);
 };

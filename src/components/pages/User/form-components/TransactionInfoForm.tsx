@@ -92,7 +92,7 @@ export const TransactionInfoForm = forwardRef<validationRef, Props>(
             <label htmlFor="transaction-name">Name</label>
             <input
               name="name"
-              maxLength={20}
+              maxLength={255}
               type="text"
               id="transaction-name"
               className="input"
@@ -110,7 +110,7 @@ export const TransactionInfoForm = forwardRef<validationRef, Props>(
             <label htmlFor="transaction-desc">Description</label>
             <textarea
               name="description"
-              maxLength={100}
+              maxLength={500}
               id="transaction-desc"
               className="input"
               value={transactionState.data.description}

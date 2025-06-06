@@ -40,7 +40,7 @@ export const NewCategoryForm = ({
           <label htmlFor="category-name">Name</label>
           <input
             name="name"
-            maxLength={20}
+            maxLength={40}
             type="text"
             id="category-name"
             className="input"
@@ -55,7 +55,7 @@ export const NewCategoryForm = ({
           <label htmlFor="category-desc">Description</label>
           <textarea
             name="description"
-            maxLength={100}
+            maxLength={200}
             id="category-desc"
             className="input"
             value={description}

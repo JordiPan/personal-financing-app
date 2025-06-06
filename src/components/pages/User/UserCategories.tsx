@@ -28,6 +28,9 @@ function UserCategories() {
       });
   }, []);
 
+  const handleIncome = () => {
+
+  }
   return (
     <>
       <h1>Categories | Find all your purchased items by category!</h1>
@@ -55,7 +58,7 @@ function UserCategories() {
                 ))}
               </>
             ) : (
-              <> No categories found...</>
+              <> No custom categories found...</>
             )}
           </Loading>
         </div>
