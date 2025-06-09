@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { getRecentTransactions } from "../../../../api/apiBackendServices";
 import { useAxiosPrivate } from "../../../../hooks/useAxiosPrivate";
 import { Transaction } from "../../../../api/interfaces/transaction/Transaction";
-// import { useAuth } from "../../../../context/AuthContext";
 import Loading from "../../../Loading";
 import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { dateToTextFormat } from "../../../../services/dateToTextFormat";
 
 //grabs recent 5 transactions
 export const LatestTransactions = () => {
@@ -29,7 +28,7 @@ export const LatestTransactions = () => {
   //not complex enough to warrant a separate component
   return (
     <div className="transactions-container">
-      <div className="transactions-title">Latest transactions ({transactions.length})</div>
+      <div className="module-title">Latest transactions ({transactions.length})</div>
       <div className="latest-transactions">
         <Loading isLoading={isLoading}>
           {transactions.length !== 0 ? (
@@ -37,7 +36,7 @@ export const LatestTransactions = () => {
               {transactions.map((transaction) => {
                 return (
                   <button className="transaction form-button" key={transaction.id}>
-                    {transaction.name} | {transaction.recurrence} | {transaction.total} | {transaction.date}
+                    {transaction.name} | {transaction.recurrence} | {transaction.total} | {dateToTextFormat(transaction.date)}
                   </button>
                 );
               })}

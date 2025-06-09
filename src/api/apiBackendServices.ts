@@ -13,7 +13,6 @@ import { TransactionListResponse } from "./interfaces/transaction/TransactionLis
 import { ItemsInCategoryResponse } from "./interfaces/item/ItemsInCategoryResponse";
 import { CountriesAndCategoriesResponse } from "./interfaces/transaction/CountriesAndCategoriesResponse";
 import { UserItemsResponse } from "./interfaces/item/UserItemsResponse";
-import { Transaction } from "./interfaces/transaction/Transaction";
 import { TransactionResponse } from "./interfaces/transaction/TransactionResponse";
 import { CreateTransactionRequest } from "./interfaces/transaction/CreateTransactionRequest";
 import { MonthlyTransactionsResponse } from "./interfaces/transaction/MonthlyTransactionsResponse";
@@ -62,7 +61,7 @@ export const updateCategory = async (categoryId: number, category:Category, axio
   return await axios.post<CategoryResponse>(`/categories/${categoryId}`, category);
 };
 export const getRecentTransactions = async (axios:AxiosInstance) => {
-  return await axios.get<TransactionListResponse>(`/transactions?amount=5&orderBy=desc`);
+  return axios.get<TransactionListResponse>(`/transactions?amount=5&orderBy=desc`);
 };
 //for the transaction creation selects in form
 //not sure if I should split the get for countries and categories
@@ -76,5 +75,5 @@ export const createTransaction = async (transaction: CreateTransactionRequest, a
   return await axios.post<TransactionResponse>(`/transactions`, transaction);
 };
 export const getMonthlyOverview = async (axios:AxiosInstance) => {
-  return await axios.get<MonthlyTransactionsResponse>(`/transactions?recurrence=monthly`);
+  return axios.get<MonthlyTransactionsResponse>(`/transactions?recurrence=monthly&orderBy=asc&orderMode=day`);
 };

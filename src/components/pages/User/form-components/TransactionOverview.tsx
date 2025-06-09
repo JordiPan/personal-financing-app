@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { ExistingTransactionItem } from "../../../../api/interfaces/transaction/ExistingTransactionItem";
 import { NewTransactionItem } from "../../../../api/interfaces/transaction/NewTransactionItem";
 import { Transaction } from "../../../../api/interfaces/transaction/Transaction";

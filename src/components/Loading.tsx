@@ -25,7 +25,6 @@ function Loading({
           className="loading-icon"
         >
           <img src={loadingIcon} alt="Loading icon" />
-          Loading...
         </p>
       ) : (
         <>
