@@ -1,83 +1,45 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { FilterTableModule } from "./sub-components/FilterTableModule";
 
 function UserItems() {
+  const [chosenOption, setChosenOption] = useState("Items");
+
   useEffect(() => {
-    document.title = "Items";
+    document.title = "Filter tables";
   });
+
+  const changeTable = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setChosenOption(e.currentTarget?.name);
+  };
   return (
     <div className="crud-list-container">
       <div className="options-container">
-        <button type="button" className="option-button active">
+        <button
+          name="Items"
+          type="button"
+          className={`option-button ${chosenOption === "Items" && "active"}`}
+          onClick={changeTable}
+        >
           Items
         </button>
-        <button type="button" className="option-button">
+        <button
+          name="Transactions"
+          type="button"
+          className={`option-button ${
+            chosenOption === "Transactions" && "active"
+          }`}
+          onClick={changeTable}
+        >
           Transactions
         </button>
       </div>
       <div className="container-color-dark table-list">
-        <p className="table-title">Items table</p>
+        <p className="table-title">{chosenOption} table</p>
         <div className="filter-container">
           <label id="filter">Filter:</label>
-          <input type="text" id="filter" className="input"/>
+          <input type="text" id="filter" className="input" />
         </div>
-        <table className="filter-table">
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Resellable</th>
-            <th>Country of origin</th>
-            <th>Category</th>
-          </tr>
-          <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Ernst Handel</td>
-            <td>Roland Mendel</td>
-            <td>Austria</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Island Trading</td>
-            <td>Helen Bennett</td>
-            <td>UK</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Laughing Bacchus Winecellars</td>
-            <td>Yoshi Tannamuri</td>
-            <td>Canada</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Magazzini Alimentari Riuniti</td>
-            <td>Giovanni Rovelli</td>
-            <td>Italy</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-          </tr>
-        </table>
+        <FilterTableModule option={chosenOption} />
       </div>
     </div>
   );

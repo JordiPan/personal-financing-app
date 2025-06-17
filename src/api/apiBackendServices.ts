@@ -74,6 +74,11 @@ export const getUserItems = async (axios:AxiosInstance) => {
 export const createTransaction = async (transaction: CreateTransactionRequest, axios:AxiosInstance) => {
   return await axios.post<TransactionResponse>(`/transactions`, transaction);
 };
+//ordermode = day,month,year,full
 export const getMonthlyOverview = async (axios:AxiosInstance) => {
   return axios.get<MonthlyTransactionsResponse>(`/transactions?recurrence=monthly&orderBy=asc&orderMode=day`);
+};
+//paginate true variable maybe?
+export const getPaginateTransactions = async (axios:AxiosInstance) => {
+  return axios.get<TransactionListResponse>(`/transactions`);
 };
