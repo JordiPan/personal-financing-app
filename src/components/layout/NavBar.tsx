@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function NavigationBar() {
   const { token, setToken, isLoading } = useAuth();
   const navigate = useNavigate();
-  const active = ({ isActive } : {isActive : boolean}) => { return isActive ? {backgroundColor: 'rgb(44, 44, 63)'} : {} }
+  
   let role = "";
   if (token) {
     const decoded = customjwtDecoder(token);
@@ -39,7 +39,7 @@ function NavigationBar() {
           <Link to="/" className="logo">
             <img src={logo} alt="icon image" className="home-icon" />
           </Link>
-          <NavLink style={active} to="/about" className="nav-link">
+          <NavLink  to="/about" className="nav-link">
             About
           </NavLink>
         </>
@@ -50,20 +50,20 @@ function NavigationBar() {
           <NavLink to="/dashboard" className="logo">
             <img src={logo} alt="icon image" className="home-icon" />
           </NavLink>
-          <NavLink style={active} to="/categories" className="nav-link">
+          <NavLink to="/categories" className="nav-link">
             Categories
           </NavLink>
-          <NavLink style={active} to="/items" className="nav-link">
+          <NavLink to="/items" className="nav-link">
             Items
           </NavLink>
-          <NavLink style={active} to="/profile" className="nav-link">
+          <NavLink  to="/profile" className="nav-link">
             Profile
           </NavLink>
         </>
       )}
 
       {!role ? (
-        <NavLink style={active} to="/login" className="nav-link">
+        <NavLink to="/login" className="nav-link">
           Login
         </NavLink>
       ) : (

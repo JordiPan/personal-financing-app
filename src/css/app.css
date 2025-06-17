@@ -40,7 +40,7 @@ nav a {
 }
 
 .nav-link:hover {
-  background-color: var(--hover-color-dark);
+  background-color: var(--sub-background-color-dark);
 }
 
 .home-icon {
@@ -159,4 +159,7 @@ textarea {
   justify-content: center;
   gap: 1rem;
   
+}
+.active {
+  background-color: var(--sub-background-color-dark) !important;
 }
