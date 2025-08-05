@@ -47,7 +47,7 @@ img {
 }
 .banner {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("src/assets/finance.jpg");
+    url("../assets/finance.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

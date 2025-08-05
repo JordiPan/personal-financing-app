@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../../../css/home.css";
-import { useAuth } from "../../../context/AuthContext";
+// import { useAuth } from "../../../context/AuthContext";
 import { LatestTransactions } from "./sub-components/LatestTransactions";
 import { MonthlyOverview } from "./sub-components/MonthlyOverview";
 function Dashboard() {
-  const {token} = useAuth();
   
   useEffect(() => {
     document.title = "Dashboard";

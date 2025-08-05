@@ -1,5 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
-import logo from "../../assets/logo.svg";
+import logo from "/logo.svg";
 import { useAuth } from "../../context/AuthContext";
 import { logout } from "../../api/apiBackendServices";
 import { customjwtDecoder } from "../../api/CustomJwtDecoder";

@@ -9,15 +9,16 @@ const useRefresh = () => {
     return await axiosDefault
       .get<LoginResponse>("/auth/refresh", {
         withCredentials: true,
-      })
+        timeout: 1500
+      }, )
       .then((res) => {
         const token = res?.data?.access_token;
         setToken(token);
         setIsLoading(false);
         return token;
       })
-      .catch((res) => {
-        console.log("refresh error: ", res);
+      .catch(() => {
+        // console.log("error: ", res);
       })
       .finally(() => {
         setIsLoading(false);

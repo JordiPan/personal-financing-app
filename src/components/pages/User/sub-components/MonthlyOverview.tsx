@@ -3,7 +3,7 @@ import { getMonthlyOverview } from "../../../../api/apiBackendServices";
 import { useAxiosPrivate } from "../../../../hooks/useAxiosPrivate";
 import { Transaction } from "../../../../api/interfaces/transaction/Transaction";
 import Loading from "../../../Loading";
-import { useNavigate } from "react-router-dom";
+
 export const MonthlyOverview = () => {
   const axiosPrivate = useAxiosPrivate();
   const [isLoading, setIsLoading] = useState(true);
